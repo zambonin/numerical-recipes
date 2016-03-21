@@ -1,0 +1,347 @@
+\documentclass{article}
+
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, color, enumitem, listings, mathtools}
+
+\newcommand\divr[1]{\multicolumn{1}{c|}{#1}}
+\newcommand\redn[1]{\textcolor{red}{#1}}
+
+\newenvironment{arabenum}{
+    \begin{enumerate}[label=\textbf{\arabic*})]
+}{
+    \end{enumerate}
+}
+
+\newenvironment{alphenum}{
+    \begin{enumerate}[label=(\alph*)]
+}{
+    \end{enumerate}
+}
+
+\newenvironment{bittable}[1]{
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}#1}
+}{
+    \end{tabular*}
+}
+
+\newenvironment{discusscode}[1]{
+    \lstinputlisting[language=Python]{code/#1}
+    \vspace{-2mm}
+    \begin{itemize}
+}{
+    \end{itemize}
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{colorcode}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+}
+
+\lstset{style=colorcode}
+
+\begin{document}
+
+{\bf \noindent Universidade Federal de Santa Catarina - UFSC \\
+Centro Tecnológico - CTC \\
+Departamento de Informática e Estatística - INE \\
+
+\noindent Lista de Exercícios 1 - INE5202/INE5232/INE5409 \\
+Prof. Sérgio Peters (\verb!sergio.peters@ufsc.br!)
+
+\begin{center} Resoluções
+\footnote{por Gustavo Zambonin (\texttt{gustavo.zambonin@grad.ufsc.br})}
+\end{center}}
+
+\begin{arabenum}
+
+\item \begin{alphenum}
+
+\item $(10,1011)_2 = 1 \cdot 2^1 + 1 \cdot 2^{-1} + 1 \cdot 2^{-3} +
+1 \cdot 2^{-4} = \boldsymbol{(2,6875)_{10}}$
+
+\item $(10,57)_{10} = (?)_2$
+\begin{gather*}
+\begin{array}{*{7}c}
+(10)_{10} = (?)_2 \longrightarrow & \divr{10} & 2            \\ \cline{3-3}
+                                  & \redn{0}  & \divr{5} & 2 \\ \cline{4-4}
+&                                 & \redn{1}  & \divr{2} & 2 \\ \cline{5-5}
+& &                               & \redn{0}  & \divr{1} & 2 \\ \cline{6-6}
+& & &                             & \redn{1}  & \redn{0}
+\end{array} \\
+\longleftarrow \\
+(10)_{10} = (1010)_2 = 1 \cdot 2^3 + 1 \cdot 2^1 \\
+(0,57)_{10} = (?)_2 \longrightarrow \\
+\begin{array}{*{15}c}
+0,57 & 0,14 & 0,28 & 0,56 & 0,12 &
+0,24 & 0,48 & 0,96 & 0,92 & 0,84 &
+0,68 & 0,36 & 0,72 & 0,44 \\
+\times 2 & \times 2 & \times 2 & \times 2 & \times 2 &
+\times 2 & \times 2 & \times 2 & \times 2 & \times 2 &
+\times 2 & \times 2 & \times 2 & \times 2 & \dots \\
+\redn{1},14 & \redn{0},28 & \redn{0},56 & \redn{1},12 & \redn{0},24 &
+\redn{0},48 & \redn{0},96 & \redn{1},92 & \redn{1},84 & \redn{1},68 &
+\redn{1},36 & \redn{0},72 & \redn{1},44 & \redn{0},88
+\end{array} \\
+(0,57)_{10} = (0,10010001111010 \dots)_2
+\end{gather*}
+
+Logo, $(10,57)_{10} = \boldsymbol{(1010,10010001111010 \dots)_2}$.
+
+\end{alphenum}
+
+\item \begin{discusscode}{round.py}
+
+\item A função \emph{reduce} é utilizada para criar o padrão requerido pelo
+enunciado: uma lista de números onde todos os valores estão diretamente
+relacionados a seus antecessores.
+
+\item Aplica-se a fórmula do enunciado no último termo da lista a cada iteração,
+por 10 vezes, iniciando pela inversa multiplicativa do número fornecido.
+
+\item Adiciona-se então mais casas após à vírgula para melhor visualização de
+como o arredondamento funciona.
+
+\item O objetivo do algoritmo é verificar como os valores são influenciados
+gradativamente por computações anteriores: estes perdem precisão
+exponencialmente pois um valor decimal não pode ser representado perfeitamente
+com um número finito de bits, exceto por potências de 2. A saída do algoritmo
+mostra duas possibilidades para cada caso, e como a quantidade de bits
+divergentes à divisão inicial, que já não se mostra exata, aumenta ao longo das
+iterações.
+
+\item Exemplo de saída (parcial) do programa:
+
+\begin{verbatim}
+0.333333333333333314829616256247
+0.333333333333333259318465024990
+0.333333333333333037273860099958
+0.333333333333332149095440399833
+0.333333333333328596381761599332
+0.333333333333314385527046397328
+0.333333333333257542108185589314
+0.333333333333030168432742357254
+0.333333333332120673730969429016
+0.333333333328482694923877716064
+0.333333333313930779695510864258
+\end{verbatim}
+
+\end{discusscode}
+
+\item \begin{alphenum}
+
+\item $(3021)_{F!} = 3 \cdot 4! + 0 \cdot 3! + 2 \cdot 2! + 1 \cdot 1! =
+\boldsymbol{(77)_{10}}$
+
+\item $(4321)_{F!} = 4 \cdot 4! + 3 \cdot 3! + 2 \cdot 2! + 1 \cdot 1! =
+\boldsymbol{(119)_{10}}$
+
+\item $(10000)_{F!} = 1 \cdot 5! = \boldsymbol{(120)_{10}}$
+
+\item $(0,02)_{F!} = \frac{0}{2!} + \frac{2}{3!} = (\frac{2}{6})_{10} =
+(\frac{1}{3})_{10} = \boldsymbol{(0,333333 \dots)_{10}}$
+
+\item $(0,113)_{F!} = \frac{1}{2!} + \frac{1}{3!} + \frac{3}{4!} =
+(\frac{19}{24})_{10} = \boldsymbol{(0.791\overline{6} \dots)_{10}}$
+
+\item $(321,123)_{F!} = 3 \cdot 3! + 2 \cdot 2! + 1 \cdot 1! + \frac{1}{2!} +
+\frac{2}{3!} + \frac{3}{4!} = (\frac{575}{24})_{10} =
+\boldsymbol{(23.958\overline{3})_{10}}$
+
+\end{alphenum}
+
+\item \begin{alphenum}
+
+\item $(10111,1101)_2 = (0001 \; 0111,1101)_2 = (17,D)_{16} = 1 \cdot 16^1 +
+7 \cdot 16^0 + 13 \cdot 16^{-1} = (\frac{381}{16})_{10} =
+\boldsymbol{(23,8125)_{10}}$
+
+\item $(BD,0E)_{16} = (1011 \; 1101,0000 \; 1110)_2 = 1 \cdot 2^7 +
+1 \cdot 2^5 + 1 \cdot 2^4 + 1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^0 +
+1 \cdot 2^{-5} + 1 \cdot 2^{-6} + 1 \cdot 2^{-7} = (\frac{24199}{128})_{10} =
+\boldsymbol{(189,0546875)_{10}}$
+
+\item $(41,1)_{10} = (?)_2 = (?)_{16}$
+\begin{gather*}
+\begin{array}{*{8}c}
+(41)_{10} = (?)_2 \longrightarrow & \divr{41} & 2             \\ \cline{3-3}
+                                  & \redn{1}  & \divr{20} & 2 \\ \cline{4-4}
+&                                 & \redn{0}  & \divr{10} & 2 \\ \cline{5-5}
+& &                               & \redn{0}  & \divr{5}  & 2 \\ \cline{6-6}
+& & &                             & \redn{1}  & \divr{2}  & 2 \\ \cline{7-7}
+& & & &                           & \redn{0}  & \divr{1}  & 2 \\ \cline{8-8}
+& & & & &                         & \redn{1}  & \redn{0}
+\end{array} \\
+\longleftarrow \\
+(41)_{10} = (101001)_2 = 1 \cdot 2^5 + 1 \cdot 2^3 + 1 \cdot 2^0 \\
+(0,1)_{10} = (?)_2 \longrightarrow \\
+\begin{array}{*{11}c}
+0,1 & 0,2 & 0,4 & 0,8 & 0,6 & 0,2 & 0,4 & 0,8 & 0,6 & 0,2 & \\
+\times 2 & \times 2 & \times 2 & \times 2 & \times 2 & \times 2 & \times 2 &
+\times 2 & \times 2 & \times 2 & \dots \\
+\redn{0},2 & \redn{0},4 & \redn{0},8 & \redn{1},6 & \redn{1},2 & \redn{0},4 &
+\redn{0},8 & \redn{1},6 & \redn{1},2 & \redn{0},4 &
+\end{array} \\
+(0,1)_{10} = (0,00011001100110011 \dots)_2
+\end{gather*}
+
+Logo, $(41,1)_{10} = (101001,0\overline{0011})_2 =
+(0010 \; 1001, 0001 \; \overline{1001})_2 =
+\boldsymbol{(29,1\overline{9})_{16}}$. Haverá perda de dígitos significativos.
+
+\end{alphenum}
+
+\item $F(\beta, t, I, S) \longrightarrow F(2, 3, -3, +3) \longrightarrow$
+\begin{tabular}{*{8}{|c}|}
+\hline
+$s_1$ & $d_1$ & $d_2$ & $d_3$ & $s_2$ & $e_1$ & $e_2$ & $e_3$ \\
+\hline
+\end{tabular}
+\begin{alphenum}
+
+\item $NM = (\beta - 1) \cdot \beta^{t - 1} = (2 - 1) \cdot 2^{3 - 1} =
+\boldsymbol{4}$
+
+\item $NE = S - I + 1 = 3 - (-3) + 1 = \boldsymbol{7}$
+
+\item $NR = 2 \cdot NM \cdot NE + 1 = \boldsymbol{57}$
+
+\item \begin{tabular}{*{8}{|c}|}
+\hline
+$0$ & $1$ & $0$ & $0$ & $1$ & $1$ & $0$ & $0$ \\
+\hline
+\end{tabular} $\longrightarrow m.p. = (0,1)_2 \cdot (2^{-3})_{10} =
+(2^{-1})_{10} \cdot (2^{-3})_{10} = (0,0625)_{10}$
+
+Logo, a região de \emph{underflow} é
+$\boldsymbol{\{x \in \mathbb{R} \mid -(0,0625)_{10} < x < (0,0625)_{10}\}}$.
+
+\begin{tabular}{*{8}{|c}|}
+\hline
+$0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $0$ & $0$ \\
+\hline
+\end{tabular} $\longrightarrow M.P. = (0,111)_2 \cdot (2^3)_{10} =
+(0,875)_{10} \cdot (2^3)_{10} = (7)_{10}$
+
+Logo, a região de \emph{overflow} é
+$\boldsymbol{\{x \in \mathbb{R} \mid x < -(7)_{10} \cup x > (7)_{10}\}}$.
+
+\end{alphenum}
+
+\item $F(\beta, t, I, S) \longrightarrow F(2, 3, 0, +7) \longrightarrow$
+\begin{tabular}{*{8}{|c}|}
+\hline
+$s_1$ & $d_1$ & $d_2$ & $d_3$ & $0$ & $e_1$ & $e_2$ & $e_3$ \\
+\hline
+\end{tabular}
+\begin{alphenum}
+
+\item $NM = (\beta - 1) \cdot \beta^{t - 1} = (2 - 1) \cdot 2^{3 - 1} =
+\boldsymbol{4}$
+
+\item $NE = S - I + 1 = 7 - 0 + 1 = \boldsymbol{8}$
+
+\item $NR = 2 \cdot NM \cdot NE + 1 = \boldsymbol{65}$
+
+\item \begin{tabular}{*{8}{|c}|}
+\hline
+$0$ & $1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
+\hline
+\end{tabular} $\longrightarrow m.p. = (0,1)_2 \cdot (2^{0})_{10} =
+(2^{-1})_{10} \cdot (1)_{10} = \boldsymbol{(0,5)_{10}}$
+
+Logo, a região de \emph{underflow} é
+$\boldsymbol{\{x \in \mathbb{R} \mid -(0,5)_{10} < x < (0,5)_{10}\}}$.
+
+\begin{tabular}{*{8}{|c}|}
+\hline
+$0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $1$ & $1$ \\
+\hline
+\end{tabular} $\longrightarrow m.p. = (0,111)_2 \cdot (2^{7})_{10} =
+(0,875)_{10} \cdot (2^7)_{10} = \boldsymbol{(112)_{10}}$
+
+Logo, a região de \emph{overflow} é
+$\boldsymbol{\{x \in \mathbb{R} \mid x < -(112)_{10} \cup x > (112)_{10}\}}$.
+
+\end{alphenum}
+
+\item[\textbf{9})] \begin{discusscode}{div_by_zero.py}
+
+\item O processo descrito em código pode ser reescrito aritmeticamente da
+seguinte maneira:
+
+\begin{equation*}
+g = \frac{e}{f}
+  = \frac{3 \cdot x - h}{5 \cdot y - h}
+  = \frac{3 \cdot (\frac{2}{3} - h) - h}{5 \cdot (\frac{3}{5} - h) - h}
+  = \frac{3 \cdot (\frac{2}{3} - \frac{1}{2}) - \frac{1}{2}}
+         {5 \cdot (\frac{3}{5} - \frac{1}{2}) - \frac{1}{2}}
+  = \frac{3 \cdot \frac{1}{6} - \frac{1}{2}}
+         {5 \cdot \frac{1}{10} - \frac{1}{2}}
+  = \frac{\frac{1}{2} - \frac{1}{2}}{\frac{1}{2} - \frac{1}{2}}
+  = \frac{0}{0}
+\end{equation*}
+
+Porém, nota-se que na saída do programa, as variáveis \verb!x! e \verb!y! são
+responsáveis pelo resultado válido (\verb!g! $= 1$), em virtude da imprecisão de
+seu armazenamento quando $\beta = 2$ (as multiplicações realizadas nunca serão
+iguais a um valor exato binariamente como $\frac{1}{2}$). Assim, como \verb!e!
+$=$ \verb!f! e $e,f \neq 0$, então $\frac{e}{f} = g = 1$.
+
+\item Saída do programa:
+\begin{verbatim}
+0.5000000000000000000000000000000000000000000000000000000
+0.5000000000000000000000000000000000000000000000000000000
+
+0.1666666716337203979492187500000000000000000000000000000
+0.1666666666666666296592325124947819858789443969726562500
+
+0.1000000014901161193847656250000000000000000000000000000
+0.0999999999999999777955395074968691915273666381835937500
+
+-0.0000000000000001110223024625156540423631668090820312500
+-0.0000000000000001110223024625156540423631668090820312500
+
+-0.0000000000000001110223024625156540423631668090820312500
+-0.0000000000000001110223024625156540423631668090820312500
+
+1.0000000000000000000000000000000000000000000000000000000
+1.0000000000000000000000000000000000000000000000000000000\end{verbatim}
+
+\end{discusscode}
+
+\item[\textbf{17, 18})] \begin{discusscode}{maclaurin.py}
+
+\item O decimal desejado foi retirado do
+\href{http://www.wolframalpha.com/input/?i=e%5E(-.111)}{Wolfram Alpha}, para
+comparação com os resultados calculados pelo programa em variáveis de precisão
+simples e dupla, respectivamente. O erro da variável de precisão simples é maior
+pela quantidade reduzida de bits disponíveis para armazenar a parte decimal do
+resultado.
+
+\item Novamente, a função \emph{reduce} é utilizada para simular o cálculo da
+série de Maclaurin com os argumentos fornecidos.
+
+\item Saída do programa:
+\begin{verbatim}
+0.0000069152325516942810432695874778286082573686144314706325531005859375%
+0.0000069138016857893659460184906939694826633058255538344383239746093750%
+\end{verbatim}
+
+\end{discusscode}
+
+\end{arabenum}
+
+\end{document}
