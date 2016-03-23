@@ -1,0 +1,714 @@
+\documentclass[12pt]{article}
+
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, enumitem}
+
+\newenvironment{smallitem}{
+    \vspace{-2mm}
+    \begin{enumerate}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{2pt}
+}{
+    \vspace{-2mm}
+    \end{enumerate}
+}
+
+% http://tex.stackexchange.com/a/58145
+\newcommand\Item[1][]{
+    #1 \item
+    \abovedisplayskip=0pt
+    ~\vspace*{-\baselineskip}
+}
+
+\begin{document}
+
+{\bf \noindent Universidade Federal de Santa Catarina - UFSC \\
+Centro Tecnológico - CTC \\
+Departamento de Informática e Estatística - INE \\
+
+\noindent Lista de Exercícios 1 - INE5202/INE5232/INE5409 \\
+Prof. Sérgio Peters (\texttt{sergio.peters@ufsc.br})}
+
+\begin{enumerate}[label=\textbf{\arabic*})]
+
+\item Classifique as possíveis soluções dos seguintes sistemas de equações
+lineares, através do método de Gauss com pivotamento total:
+
+\begin{smallitem}
+
+\Item \begin{align*}
+\begin{cases}
+3 x_1 + 1.5 x_2 + 4.75 x_3 = 8 \\
+4 x_1 + 2 x_2 + 3 x_3 = 7 \\
+2 x_1 + 5 x_2 + 3 x_3 = -12
+\end{cases}
+\end{align*}
+
+\Item \begin{align*}
+\begin{cases}
+x_1 + 0.5 x_2 - 1.75 x_3 = -1 \\
+3 x_1 + 1.5 x_2 + 4.75 x_3 = 8 \\
+4 x_1 + 2 x_2 + 3 x_3 = 7
+\end{cases}
+\end{align*}
+
+\Item \begin{align*}
+\begin{cases}
+x_1 + 0.5 x_2 - 1.75 x_3 = 0 \\
+3 x_1 + 1.5 x_2 + 4.75 x_3 = 8 \\
+4 x_1 + 2 x_2 + 3 x_3 = 7
+\end{cases}
+\end{align*}
+
+\end{smallitem}
+
+\item Resolva o sistema de equações lineares abaixo pelo método de Gauss
+utilizando pivotação parcial e pivotação total.
+\begin{align*}
+\begin{cases}
+4 x_1 + x_2 + 2 x_3 = -1 \\
+x_1 - 2 x_2 + x_3 = 10 \\
+x_1 + 0.1 x_2 - x_3 = -3
+\end{cases}
+\end{align*}
+
+\item Calcule o determinante da matriz de coeficientes utilizando o processo de
+eliminação adotado pelo método de Gauss.
+
+\item Monte um algoritmo que calcule o determinante da matriz de coeficientes
+escalonada, utilizando o processo de eliminação adotado pelo método de Gauss.
+
+\item (opcional) Elabore um algoritmo para resolver um sistema de equações
+lineares pelo método de Gauss-Jordan utilizando pivotação parcial. (Sugestão:
+estenda as eliminações do algoritmo de Gauss para as linhas acima e abaixo da
+diagonal principal).
+
+\item Dado o sistema de equações lineares:
+\begin{align*}
+\begin{cases}
+3 x_1 + 15 x_2 + 4.75 x_3 = 8 \\
+4.01 x_1 + x_2 + 3 x_3 = 7 \\
+x_1 + 0.5 x_2 - 0.05 x_3 = -1
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Resolva-o pelo método de eliminação de Gauss sem pivotamento;
+
+\item Resolva-o pelo método de eliminação de Gauss com pivotamento parcial;
+
+\item Resolva-o pelo método de eliminação de Gauss com pivotamento total;
+
+\item (opcional) Resolva-o pelo método de eliminação de Gauss-Jordan com
+pivotamento parcial;
+
+\item (opcional) Resolva-o pelo método de Inversão de matriz com pivotamento
+parcial.
+
+\end{smallitem}
+
+\item (opcional) Monte um algoritmo para determinar a matriz inversa de A,
+recorrendo ao método de eliminação de Gauss-Jordan com pivotamento parcial.
+
+\item Resolva o seguinte sistema de equações lineares pelo método de Crout:
+\begin{align*}
+\begin{cases}
+4 x_1 - x_2 + x_3 = 0 \\
+- x_1 + 4.25 x_2 + 2.75 x_3 = 1 \\
+x_1 + 2.75 x_2 + 3.5 x_3 = -1
+\end{cases}
+\end{align*}
+
+\item (opcional) Resolva o sistema de equações lineares acima pelo método de
+Cholesky.
+
+\item Para resolver um sistema de equações lineares da ordem de $n = 10$ (10
+equações com 10 incógnitas) em computador, utilizando o método de Eliminação de
+Gauss sem pivotamento, a solução foi encontrada em 0.1 segundos de CPU, por
+exemplo. Estime o tempo que este mesmo computador levaria para resolver um
+sistema da ordem de $n = 1000$ equações, utilizando o mesmo método.
+
+\item Avalie o condicionamento do sistema abaixo pelos dois critérios
+estabelecidos:
+\begin{align*}
+\begin{cases}
+x_1 + 0.5 x_2 - 0.05 x_3 = -1 \\
+3 x_1 + 1.5 x_2 + 4.75 x_3 = 8 \\
+4.01 x_1 + 2 x_2 + 3 x_3 = 7
+\end{cases}
+\end{align*}
+
+\item Monte um algoritmo genérico \verb!x = fsubstituicoes(n, LU, b)!, que
+determine e retorne a solução $x$ do sistema linear $A \cdot x = b$, a partir da
+matriz $LU$ decomposta de $A$, onde $LU$ contém $L$ e $U$ concatenadas na mesma
+matriz, e do vetor $b$, fazendo as duas substituições $L \cdot c = b$ e $U \cdot
+x = c$.
+\begin{align*}
+LU = \begin{bmatrix}
+L_{11} & U_{12} & U_{13} \\
+L_{21} & L_{22} & U_{23} \\
+L_{31} & L_{32} & L_{33}
+\end{bmatrix}
+\end{align*}
+
+Determine o número de operações \verb!x = fsubstituicoes(n, LU, b)!, em função
+de $n$.
+
+\textbf{Dada a função}: \verb![LU b] = fLU(n, A, b)! - que retorna a matriz LU
+decomposta (LU de Crout), com as matrizes $L$ e $U$ armazenadas juntas, com
+pivotação parcial interna, através da função
+\verb![A b] = fpivotacao(k, n, A, b)! - que troca linhas da matriz $A$ e do
+vetor $b$ e retorna do lado esquerdo da função \verb!fpivotacao.m!, uma nova
+matriz $A$ com a linha $k$ contendo o maior coeficiente em módulo na coluna $k$.
+
+\item Dado o sistema linear abaixo para $n = 10000$ equações:
+\begin{align*}
+\begin{cases}
+x_i + x_{i + 1} = 150 &
+i = 1 \\
+x_{i - 1} + 9x_i + x_{i + 1} + x_{i + 100} = 100 &
+i = 2, \dots, \frac{n}{2} \\
+x_{i - 100} + x_{i - 1} + 9x_i + x_{i + 1} = 200 &
+i = \frac{n}{2} + 1, \dots, n - 1 \\
+x_{i - 1} + x_i = 300 &
+i = n
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Se o sistema for resolvido por métodos iterativos, como Jacobi ou
+Gauss--Seidel, a sua convergência para a solução é garantida? Justifique;
+
+\item É recomendo testar a utilização de fatores de sub-relaxação? Justifique;
+
+\item Monte um algoritmo otimizado, que calcule e imprima a solução $x$ do sistema
+linear acima com 10 dígitos significativos exatos, para $n = 10000$ incógnitas, pelo
+método que efetue o menor número de operações aritméticas em ponto flutuante.
+Justifique a escolha do método adotado.
+
+\end{smallitem}
+
+\item \begin{smallitem}
+
+\item Que cuidados devem ser tomados ao se resolver sistemas mal-condicionados
+por métodos diretos. Seria indicado resolver sistemas mal-condicionados por
+métodos iterativos? Justifique;
+
+\item Monte um algoritmo otimizado \verb!A = fescalona(n, A)!, que determine e
+retorne a matriz escalonada triangular superior, expandida com $b$, em $A =
+\begin{bmatrix} A & b \end{bmatrix}$, do lado esquerdo da function, a partir das
+entradas $(n, A)$, onde $n$ é o nº de equações e $A = \begin{bmatrix} A_0 & b
+\end{bmatrix}$ é a matriz expandida original de um sistema genérico $A_0 \cdot x
+= b$.
+
+\end{smallitem}
+
+\item Dado o sistema linear com 4 tipos de equações:
+\begin{align*}
+\begin{cases}
+x_i - x_{i + 1} = 0.1 &
+i = 1 \\
+- x_{i - 1} + 2x_i - x_{i + 1} = 0.1 &
+i = 2, \dots, n_1 - 1 \\
+- x_{i - 2} - x_{i - 1} + 3x_i - x_{i + 1} = 0.2 &
+i = n_1, \dots, n_2 - 1 \\
+- x_{i - 1} + 2x_i = 0.3 &
+i = n_2
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Considerando $n_1 = 300$ e $n_2 = 400$, se o sistema for resolvido por
+métodos iterativos, a sua convergência será garantida? Justifique sua resposta.
+
+\item Se o sistema acima convergir `'lentamente`' para a solução por métodos
+iterativos, como a sua convergência pode ser acelerada? Justifique sua resposta.
+
+\item Se o sistema acima convergir `'oscilando`' para a solução por métodos
+iterativos, como a sua convergência pode ser acelerada? Justifique sua resposta.
+
+\item Determine a solução $x$ e o resíduo máximo das equações, do sistema acima,
+para $n_1 = 3$ e $n_2 = 4$, pelo método de Gauss (sem pivotação);
+
+\item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$, com erro
+máximo estimado por $max(\vert x(i)- x_i(i) \vert)$ de sua escolha, pelo método
+de Gauss--Seidel (sem fator de sub-relaxação).
+
+\end{smallitem}
+
+\item Dado o sistema linear com 4 tipos de equações:
+\begin{align*}
+\begin{cases}
+x_i - x_{i + 1} = 0.1 &
+i = 1 \\
+- x_{i - 1} + 4x_i - x_{i + 1} = 0.1 &
+i = 2, \dots, n_1 - 1 \\
+- x_{i - 2} - x_{i - 1} + 2x_i = 0.2 &
+i = n_1, \dots, n_2 - 1 \\
+- x_{i - 1} + 2x_i = 0.3 &
+i = n_2
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Considerando $n_1 = 300$ e $n_2 = 400$, se o sistema for resolvido por
+métodos iterativos, a sua convergência será garantida? Justifique sua resposta.
+
+\item Se o sistema acima convergir de forma `'oscilatória`' ao longo de um
+processo iterativo, como a sua convergência pode ser acelerada? Justifique sua
+resposta.
+
+\item Determine as matrizes $L$ e $U$ decompostas de $A$, tal que $L \cdot U =
+A$, referente ao sistema acima para $n_1 = 3$ e $n_2 = 4$, pelo método de Crout
+(sem pivotação);
+
+\item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$, com erro
+máximo estimado por $max(\vert x(i)- x_i(i) \vert) < 2 \cdot 10^{-2}$, pelo
+método de Gauss--Seidel (sem fator de sub-relaxação), a partir da solução
+inicial NULA.
+
+\end{smallitem}
+
+\item Dado o seguinte sistema linear:
+
+\begin{smallitem}
+
+\item Se este sistema for resolvido por métodos DIRETOS, verifique se é um
+sistema mal-condicionado. Justifique;
+
+\item Que cuidados devemos tomar adicionalmente para resolver sistemas mal-
+condicionados?
+
+\item Determine a solução $x$ do sistema acima pelo método de Gauss;
+
+\item Determine o resíduo máximo do sistema acima com a solução $x$ obtida acima
+e avalie se este resíduo é satisfatório (de acordo com o número de dígitos
+significativos que usar);
+
+\item Monte um algoritmo genérico, tipo \verb!Ab = fescalonamento(n, Ab)!, que
+determine e retorne a matriz $Ab$ triangularizada à esquerda, a partir das
+entradas $n$ e $Ab$ originais, $Ab = \begin{bmatrix} A & b \end{bmatrix}$
+concatenadas em $n$ linhas e $n + 1$ colunas, onde $A \cdot x = b$.
+
+\item Monte um algoritmo genérico \verb!x = fretrosubtituicao(n, Ab)!, que
+determine e retorne a solução $x$ a partir das entradas $n$ e $Ab$, onde
+$Ab = \begin{bmatrix} A & b \end{bmatrix}$ contém a matriz triangularizada;
+
+\item Determine a solução $x$ do sistema acima pelo método de Crout (sem
+pivotação);
+
+\item Determine o resíduo máximo do sistema acima com a solução $x$ obtida e
+avalie se este resíduo é satisfatório (de acordo com o número de dígitos
+significativos que usar);
+
+\item Monte um algoritmo \verb!x = fsubstituicoesf(n, A)!, que determine e
+retorne a solução $x$ do sistema $A_0 \cdot x = b$, a partir das entradas $n$ e
+$A$ ($L \cdot U = A_0$ e $A = \begin{bmatrix} L $\textbackslash$ U & b
+\end{bmatrix}$, matriz expandida que contém $L$ e $U$ (sobrepostas) e
+concatenadas com $b$ em $n$ linhas e $n + 1$ colunas), resolvendo as duas
+substituições $L \cdot c = b$ e $U \cdot x = c$;
+
+\item Monte um algoritmo \verb!LU = fLU(n, A)!, que determine e retorne a matriz
+expandida decomposta $LU$, com as matrizes $L$ e $U$ (sobrepostas) e
+concatenadas com $b$, $LU = \begin{bmatrix} L $\textbackslash$ U & b
+\end{bmatrix}$, com pivotação parcial interna, através da função
+\verb!A = fpivotacao(n, A, k)! - que determina a matriz expandida $A$ com linha
+$k$ com o maior coeficiente em módulo na coluna $k$, onde
+$A = \begin{bmatrix} A_0 & b \end{bmatrix}$ e $A_0 \cdot x = b$.
+
+\end{smallitem}
+
+\item Dado o seguinte sistema linear:
+
+\begin{smallitem}
+
+\item Considerando $n_1 = 3000$ e $n_2 = 4000$ com $n_2$ equações, se o sistema
+for resolvido por métodos iterativos, a sua convergência será garantida?
+Justifique sua resposta.
+
+\item Considerando o sistema acima, é recomendado testar o uso de fatores de sub
+ou sobre relaxação na sua resolução por métodos iterativos? Justifique sua
+resposta.
+
+\item Monte um algoritmo que determine a solução do sistema acima, para $n_1 =
+3000$ e $n_2 = 4000$ equações, com erro máximo estimado por $max(\vert x(i) -
+x_a(i) \vert) < 1 \cdot 10^{-6}$, pelo método de Gauss--Seidel com fator de
+sub-relaxação 0.5, a partir da solução inicial UNITÁRIA.
+
+\item Monte um algoritmo que determine o erro de truncamento exato da solução
+$x$ do sistema acima, para $n_1 = 3000$ e $n_2 = 4000$ equações, com critério de
+parada $max(\vert x(i) - x_a(i) \vert) < 1 \cdot 10^{-6}$, pelo método de
+Gauss--Seidel com fator de sub-relaxação 0.5, a partir da solução inicial
+UNITÁRIA.
+
+\item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$ equações,
+com erro máximo estimado por $max(\vert x(i) - x_a(i) \vert)$ de sua escolha,
+pelo método de Gauss--Seidel (sem fator de sub-relaxação), a partir da solução
+inicial UNITÁRIA.
+
+\end{smallitem}
+
+\item Elabore algoritmos que:
+
+\begin{smallitem}
+
+\item Forneça a matriz pivotada $\begin{bmatrix} A & b \end{bmatrix}$ através da
+Pivotação Parcial de uma matriz expandida $\begin{bmatrix} A & b \end{bmatrix}$
+para uma linha genérica $k$;
+
+\item Forneça a matriz $\begin{bmatrix} A & b \end{bmatrix}$ triangularizada
+pelo método de Gauss de uma matriz expandida $\begin{bmatrix} A & b
+\end{bmatrix}$ genérica;
+
+\item Forneça a solução $S = \{x_i\}$ de um sistema escrito em forma de matriz
+expandida já triangularizada $\begin{bmatrix} A & b \end{bmatrix}$, pelo método
+da Retrosubstituição de Gauss;
+
+\item Forneça a matriz $\begin{bmatrix} A & b \end{bmatrix}$, decomposta em $L$
+e $U$, pelo método de Crout a partir de uma matriz expandida $\begin{bmatrix} A
+& b \end{bmatrix}$;
+
+\item Forneça a solução $S = \{x_i\}$, a partir de um sistema cuja matriz de
+coeficientes já está decomposta em $L$ e $U$ pelo método de Crout, onde $L$ e
+$U$ estão armazenadas sobrepostas em $A$ na mesma matriz expandida
+$\begin{bmatrix} A & b \end{bmatrix}$;
+
+\item Calcule o resíduo máximo das equações de um sistema
+$\begin{bmatrix} A_0 & b \end{bmatrix}$ original para uma solução $S = \{x_i\}$.
+
+\end{smallitem}
+
+\item Determine a solução $x$ do seguinte sistema composto por uma matriz
+tridiagonal pelo método de Gauss otimizado pelo algoritmo de Thomas:
+\begin{align*}
+\begin{cases}
+x_1 - x_2 = 5 \\
+3x_2 - x_3 = 4 \\
+x_2 - 2x_3 + x_4 = 10 \\
+x_3 - x_4 + x_5 = 3 \\
+x_4 + x_5 = -3
+\end{cases}
+\end{align*}
+
+\item Monte um algoritmo que determine a solução do sistema acima pelo método de
+Gauss otimizado pelo algoritmo de Thomas.
+
+\item Dado o sistema linear:
+\begin{align*}
+\begin{cases}
+x_1 - x_2 = 150 \\
+x_{i - 1} - 3x_i + x_{i + 1} - x_{i + 10000} = 100 & i = 2, \dots, 2999 \\
+x_{i - 1000} - 2.1x_i + x_{i + 1} & i = 3000, \dots, 4999 \\
+x_{4999} - x_{5000} = 300
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Analise o sistema anterior de 5000 equações e escolha um método adequado
+para sua resolução. Justifique sua resposta.
+
+\item Se o sistema for resolvido por métodos iterativos, a sua convergência é
+garantida?
+
+\item Elabore um algoritmo otimizado para obter sua solução com $max(\vert
+x_i^{k + 1} - x_i^k \vert) \leq \epsilon \; (\epsilon = 1 \cdot 10^{-5})$ pelo
+método de Gauss--Seidel com sub-relaxação de $\lambda = 0.8$, a partir da
+solução inicial $(0, 0, 0, \dots, 0)$.
+
+\end{smallitem}
+
+\item Dado o seguinte sistema linear:
+\begin{align*}
+\begin{cases}
+x_1 + 2x_2 + x_3 = 4 \\
+x_1 + 0.1x_2 + x_3 = -3 \\
+4x_1 + x_2 + 2x_3 = -1
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Verifique se este sistema possui diagonal dominante;
+
+\item Efetue uma pivotação parcial em todos as linhas;
+
+\item Verifique novamente se o sistema pivotado apresenta diagonal dominante;
+
+\item Resolva o sistema pivotado pelo método de Gauss-Seidel, com critério
+$max(\vert x_i^{k + 1} - x_i^k \vert) \leq \epsilon \; (\epsilon = 1 \cdot
+10^{-2})$ partindo da solução inicial $(0, 0, 0)$.
+
+\end{smallitem}
+
+\item Responda:
+
+\begin{smallitem}
+
+\item O que é pivotação parcial e para que serve?
+
+\item A pivotação parcial ajuda a minimizar o acúmulo de erros de
+arredonamento ao longo do processo de escalonamento? Justifique.
+
+\item Quais são os requisitos para que um sistema de equações convirja
+garantidamente?
+
+\item Quais são os requisitos para que um sistema de equações convirja
+rapidamente e sem oscilações?
+
+\end{smallitem}
+
+\item Sabendo que um computador $X$ opera $10^6$  operações em ponto flutuante
+por segundo, e que o número total de operações aritméticas envolvidas no
+método de Gauss é da ordem de $O(\frac{2}{3} n^3)$ operações:
+
+\begin{smallitem}
+
+\item Quanto tempo de CPU será necessário para resolver um sistema de $n =
+1000$ equações neste mesmo computador?
+
+\item Quantos MB (megabytes) são necessários para armazenar um sistema de $n =
+1000$ equações utilizando variáveis double (64 bits = 8 B) na forma de matriz
+expandida?
+
+\end{smallitem}
+
+\item Dado o seguinte sistema de equações:
+\begin{align*}
+\begin{cases}
+2x_1 - x_2 + x_3 = -1 \\
+x_1 - 2x_2 + x_3 = 1 \\
+x_1 - 0.1x_2 - x_3 = 3
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Verifique se o sistema acima é mal condicionado. Justifique;
+
+\item Determine as matrizes $L$ e $U$ e a solução $S = \{x1, x2, x3\}$ do
+sistema $A \cdot x = b$ acima pelo método de decomposição $L$ e $U$ de CROUT;
+
+\item Calcule o resíduo máximo da solução $S$ obtida acima.
+
+\end{smallitem}
+
+\item Dado o seguinte sistema linear:
+\begin{align*}
+\begin{cases}
+x_1 + x_3 = 1 \\
+x_{i - 1} + 2x_i + x_{i + 1} = 3 & i = 2, \dots, n - 1 \\
+x_{n - 1} + 2x_n = 3
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Considerando $n = 1000$ equações, se o sistema for resolvido por métodos
+iterativos, a sua convergência será garantida? Justifique sua resposta.
+
+\item Considerando $n = 4$ equações, determine a solução do sistema, com erro
+máximo estimado por $max(\vert x_i - x_i^a \vert) \leq \epsilon$, pelo método
+de Gauss--Seidel, com fator de sub-relaxação $\lambda = 0.8$ a partir da
+solução inicial unitária ($\epsilon$ de sua escolha). Defina o erro
+encontrado.
+
+\item Monte um algoritmo que determine a solução do sistema acima, para $n =
+1000$ equações, com critério de parada $max(\vert x_i - x_i^a \vert) \leq
+0.000001$, pelo método de Gauss--Seidel, com fator de sub-relaxação $\lambda =
+0.8$ a partir da solução inicial unitária. Calcule os erros exatos de cada
+$x(i)$ da solução.
+
+\end{smallitem}
+
+\item Dado o seguinte sistema de equações:
+\begin{align*}
+\begin{cases}
+x_1 + x_2 + 1.5x_3 = 4 \\
+2x_1 + 0.5x_3 = -3 \\
+3x_1 + x_2 + 2x_3 = 1
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Verifique se o sistema acima é mal-condicionado. Justifique;
+
+\item Determine uma solução do sistema acima pelo método de GAUSS
+(triangularização e retrosubstituição), com pivotação parcial;
+
+\item Avalie os resíduos finais das equações e verifique se a solução obtida
+tem uma exatidão satisfatória (de acordo com o número de dígitos adotado).
+
+\end{smallitem}
+
+\item Dado o seguinte sistema de equações:
+\begin{align*}
+\begin{cases}
+x_1 + x_2 + 1.5x_3 = 4 \\
+2x_1 + 0.01x_2 + 0.5x_3 = -3 \\
+3x_1 + x_2 + 2x_3 = 1
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Verifique se o sistema acima é mal-condicionado. Que cuidados são
+necessários para se resolver um sistema mal condicionado com exatidão?
+Justifique;
+
+\item Determine a solução do sistema acima pelo método de Crout (decomposição
+$LU$);
+
+\item Avalie os resíduos finais das equações e verifique se a solução obtida
+tem uma exatidão satisfatória (de acordo com o número de dígitos adotado).
+
+\end{smallitem}
+
+\item Dado o sistema linear para $n = 1000$ equações:
+\begin{align*}
+\begin{cases}
+x_i + x_{i + 1} = 150 & i = 1 \\
+x_{i - 1} + 9x_i + x_{i + 1} + x_{i + 100} = 100 &
+i = 2, \dots, \frac{n}{2} \\
+x_{i - 100} + x_{i - 1} + 9x_i + x_{i + 1} = 200 &
+i = \frac{n}{2} + 1, \dots, n - 1 \\
+x_{i - 1} + x_i = 300 & i = n
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Esse sistema pode ser resolvido pelo método de Gauss otimizado, para
+matriz banda tridiagonal? Justifique;
+
+\item Monte um algoritmo otimizado, que calcule e imprima uma solução
+satisfatória (escolha um erro adequado) para as $n = 1000$ incógnitas, pelo
+método que você presuma efetuar o menor número de operações artiméticas em
+ponto flutuante. Justifique a escolha do método adotado. Escolha.
+
+\end{smallitem}
+
+\item Dado o sistema linear com 4 tipos de equações:
+\begin{align*}
+\begin{cases}
+x_i - x_{i + 1} = 0.1 & i = 1 \\
+- x_{i - 1} + 4x_i - x_{i + 1} = 0.1 & i = 2, \dots, n_1 - 1 \\
+- x_{i - 1} + 2x_i - x_{i + 1} = 0.2 & i = n_1, \dots, n_2 - 1 \\
+- x_{i - 1} + 2x_i = 0.3 & i = n_2
+\end{cases}
+\end{align*}
+
+\begin{smallitem}
+
+\item Considerando $n_1 = 300$ e $n_2 = 500$, se o sistema for resolvido por
+métodos iterativos, a sua convergência será garantida? Justifique sua
+resposta.
+
+\item Se o sistema acima convergir lentamente ao longo de um processo
+iterativo, como a sua convergência pode ser acelerada? Justifique sua
+resposta.
+
+\item Monte um algoritmo otimizado, que determine e imprima a solução $x$ do
+sistema acima pelo método de Gauss otimizado para matrizes tridiagonais.
+
+\item Monte um algoritmo otimizado, que determine e imprima a solução $x$ do
+sistema acima pelo método de Gauss--Seidel, sem fator de relaxação, com
+critério de parada $max(\vert x(i) - x_i(i) \vert) < 1 \cdot 10^{-4}$.
+
+\item Explique como você calcularia o erro de truncamento existente na solução
+$S$, aproximada pelo método de Gauss--Seidel em $d$, utilizando variáveis de
+64 bits.
+
+\end{smallitem}
+
+\item Dados os $m = 4$ sistemas $A \cdot x = b^m$ cada um de $n = 3$ equações
+abaixo, com a mesma matriz $A$ e com $m = 4$ termos independentes $b_i^m$
+diferentes:
+\begin{align*}
+m = 1 \longrightarrow &
+\begin{cases}
+4_x1 + x_2 + 2x_3 = 1 \\
+x_1 - 2x_2 + x_3 = 4 \\
+x_1 + 0.1x_2 - x_3 = -3
+\end{cases} &
+m = 2 \longrightarrow &
+\begin{cases}
+4_x1 + x_2 + 2x_3 = -1 \\
+x_1 - 2x_2 + x_3 = 10 \\
+x_1 + 0.1x_2 - x_3 = -3
+\end{cases} \\
+m = 3 \longrightarrow &
+\begin{cases}
+4_x1 + x_2 + 2x_3 = 7 \\
+x_1 - 2x_2 + x_3 = -4 \\
+x_1 + 0.1x_2 - x_3 = 3
+\end{cases} &
+m = 4 \longrightarrow &
+\begin{cases}
+4_x1 + x_2 + 2x_3 = 5 \\
+x_1 - 2x_2 + x_3 = 3 \\
+x_1 + 0.1x_2 - x_3 = 1
+\end{cases} \\
+A = &
+\begin{bmatrix}
+4 & 1 & 2 \\
+1 & -2 & 1 \\
+1 & 0.1 & -1
+\end{bmatrix} &
+b = &
+\begin{bmatrix}
+1 & -1 & 7 & 5 \\
+4 & 10 & -4 & 3 \\
+-3 & -3 & 3 & 1
+\end{bmatrix}
+\end{align*}
+
+Monte um algoritmo genérico, que determine as $m$ soluções $S_m = \{x_1^m,
+x_2^m, x_3^m\}$ dos $m$ sistemas $A \cdot x = b^m$ acima, através das duas
+substituições $L \cdot c^m = b^m$ e $U \cdot x^m = c^m$ propostas por Crout.
+
+Está disponível a função \verb![L U] = fLUCrout(n, A)!, que calcula e retorna
+as matrizes $L_{n x n}$ e $U_{n x n}$ (sem pivotação) sobrepostas na mesma
+matriz $LU$, por decomposição da matriz $A_{n x n}$ pelo método de CROUT ($A =
+L\ cdot U$).
+
+\item  Dado o sistema linear com 4 tipos de equações:
+\begin{align*}
+\begin{cases}
+x_i - x_{i + 1} = 0.1 & i = 1 \\
+- x_{i - 1} + 4x_i - x_{i + 1} = 0.1 & i = 2, \dots, n_1 - 1 \\
+- x_{i - 1} + 2x_i - x_{i + 1} = 0.2 & i = n_1, \dots, n_2 - 1 \\
+- x_{i - 1} + 2x_i = 0.3 & i = n_2
+\end{cases}
+\end{align*}
+onde $n_1 = 300$ e $n_2 = 500$.
+
+\begin{smallitem}
+
+\item Se o sistema for resolvido por métodos iterativos, a sua convergência
+será garantida? Justifique sua resposta.
+
+\item Se o sistema acima convergir `'oscilando ou lentamente` ao longo de um
+processo iterativo, como a sua convergência pode ser acelerada? Justifique sua
+resposta.
+
+\item Monte um algoritmo otimizado, que determine e imprima a solução $x$ do
+sistema acima pelo método de Gauss--Seidel, com fator de relaxação $f = 1.4$,
+com critério de parada $max(\vert x(i) - x_i(i) \vert) < 1 \cdot 10^{-4}$ e
+que determine e imprima o erro de truncamento máximo da solução $x$ obtida
+(utilize variáveis de 64 bits para minimizar os efeitos dos arredondamentos).
+
+\end{smallitem}
+
+\end{enumerate}
+
+\end{document}
