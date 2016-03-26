@@ -238,6 +238,11 @@ $0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $0$ & $0$ \\
 Logo, a região de \emph{overflow} é
 $\boldsymbol{\{x \in \mathbb{R} \mid x < -(7)_{10} \cup x > (7)_{10}\}}$.
 
+\item A precisão decimal equivalente é aproximadamente
+$log_{10} (2^3) = 3 \cdot log_{10} (2) \approx \boldsymbol{0.90308998699}$.
+
+\item $F(2, 3, 0, 6)$ (polarização $p = +3$)
+
 \end{alphenum}
 
 \item $F(\beta, t, I, S) \longrightarrow F(2, 3, 0, +7) \longrightarrow$
@@ -275,9 +280,49 @@ $0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $1$ & $1$ \\
 Logo, a região de \emph{overflow} é
 $\boldsymbol{\{x \in \mathbb{R} \mid x < -(112)_{10} \cup x > (112)_{10}\}}$.
 
+\item A precisão decimal equivalente é aproximadamente
+$log_{10} (2^3) = 3 \cdot log_{10} (2) \approx \boldsymbol{0.90308998699}$.
+
 \end{alphenum}
 
-\item[\textbf{9})] \begin{discusscode}{div_by_zero.py}
+\item O formato de ponto flutuante de precisão dupla tem 1 bit de sinal, 11 bits
+para expoente e 52 bits explícitos para decimais (o 1º bit é implícito por conta
+do armazenamento do número de acordo com o padrão IEEE 754).
+
+Também foi decidido neste padrão
+\href{http://stackoverflow.com/a/2835476}{facilitar} o armazenamento do
+expoente. Assim, um conceito chamado \emph{exponent bias}, calculado por
+$2^{k-1} - 1$ onde $k$ é o número de bits do expoente, foi criado com esta
+função. Este \emph{bias} é essencial para a codificação do expoente como um
+valor \verb!unsigned!. Para obter o expoente verdadeiro, subtrai-se o
+\emph{bias} do expoente representado.
+
+Assim sendo, \emph{bias} $= 2^{11-1}-1 = 1023$. $e_{min} = 1 - 1023 = -1022$ e
+$e_{max} = 2046 - 1023 = 1023$. (Os expoentes 0 e 2047 são reservados.)
+
+Portanto, o menor número passível de ser representado com precisão dupla é
+$2^{-1022} \approx \boldsymbol{2.225 \cdot 10^{-308}}$, e o maior número é
+$2^{1023}$ com todos os bits da mantissa ativados, ou seja, $2^{1023} \cdot (2 -
+2^{-52}) \approx \boldsymbol{1.797 \cdot 10^{308}}$. Às custas da perda de
+precisão, existem números que vão abaixo da fronteira de \emph{underflow},
+chamados de \href{https://en.m.wikipedia.org/wiki/Denormal_number}{subnormais}.
+
+\begin{verbatim}
+>>> 2**(-1022 - 52)
+5e-324
+>>> 2**(-1022)
+2.2250738585072014e-308
+>>> (2 - 2**(-52)) * (2**1023)
+1.7976931348623157e+308
+>>> float(2**1024)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+OverflowError: int too large to convert to float
+\end{verbatim}
+
+\item $log_{10} (2^{53}) = 53 \cdot log_{10} (2) \approx \boldsymbol{15.9546}$
+
+\item \begin{discusscode}{div_by_zero.py}
 
 \item O processo descrito em código pode ser reescrito aritmeticamente da
 seguinte maneira:
@@ -321,6 +366,40 @@ $=$ \verb!f! e $e,f \neq 0$, então $\frac{e}{f} = g = 1$.
 1.0000000000000000000000000000000000000000000000000000000\end{verbatim}
 
 \end{discusscode}
+
+\item[\textbf{12})] \begin{alphenum}
+
+\item Não é necessário fazer nenhum cálculo com a parte inteira. Então,
+$-(0.05)_{10} = (?)_2$
+\begin{gather*}
+\begin{array}{*{11}c}
+0.05 & 0.1 & 0.2 & 0.4 & 0.8 & 0.6 & 0.2 & 0.4 & 0.8 & 0.6 & \\
+\times 2 & \times 2 & \times 2 & \times 2 & \times 2 & \times 2 & \times 2 &
+\times 2 & \times 2 & \times 2 & \dots \\
+\redn{0}.1 & \redn{0}.2 & \redn{0}.4 & \redn{0}.8 & \redn{1}.6 & \redn{1}.2 &
+\redn{0}.4 & \redn{0}.8 & \redn{1}.6 & \redn{1}.2 &
+\end{array} \\
+-(0.05)_{10} = -(0.00\overline{0011})_2 =
+1 \cdot 2^{-5} \cdot -(0.\overline{1001})_2
+\end{gather*}
+$s = 1$ (sinal negativo)
+
+$e = -5 + 127 = 122$ (polarização ou \emph{exponent bias})
+
+O arredondamento no bit final da mantissa acontece pois a fração binária começa
+por 1, ou seja, é maior do que $(0.5)_{10}$. A parcela binária arredondada é
+igual a $2^{-23} \cdot (0.10011001 \dots)_2$
+
+Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
+\hline
+1 & 01111010 & 10011001100110011001101 \\
+\hline
+\end{tabular}}
+
+\item O erro de arredondamento é próximo a $2^{-23} \cdot (0.10011001 \dots)_2
+\approx (7.15256)_{10} \cdot 10^{-8}$.
+
+\end{alphenum}
 
 \item[\textbf{17, 18})] \begin{discusscode}{maclaurin.py}
 
