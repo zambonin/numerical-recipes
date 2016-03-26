@@ -48,13 +48,14 @@
     stringstyle=\color{codepurple},
     basicstyle=\footnotesize\ttfamily,
     breaklines=true,
+    showstringspaces=false,
 }
 
 \lstset{style=colorcode}
 
 \begin{document}
 
-{\bf \noindent Universidade Federal de Santa Catarina - UFSC \\
+{\bf \noindent Universidade Federal de Santa Catarina - UFSC
 Centro Tecnológico - CTC \\
 Departamento de Informática e Estatística - INE \\
 
@@ -367,7 +368,72 @@ $=$ \verb!f! e $e,f \neq 0$, então $\frac{e}{f} = g = 1$.
 
 \end{discusscode}
 
-\item[\textbf{12})] \begin{alphenum}
+\item \begin{discusscode}{quadratic.py}
+
+\item O código acima simula os cálculos com precisão dupla nos dois tipos de
+equação quadrática, além de imprimir o resultado arredondado para o operador
+aritmético $F(10, 4, -99, +99)$ e os resultados reais.
+
+\item Saída do programa:
+
+\begin{verbatim}
+x1 = -0.0161072374089670233843208 x2 = -62.0838927625910343977011507
+x1 = -0.0161072374089685811660022 x2 = -62.0838927625970313783909660
+x1 = -0.0161                      x2 = -62.08
+x1 = -0.0161072                   x2 = -62.0839
+\end{verbatim}
+
+\end{discusscode}
+
+\begin{alphenum}
+
+\item $x_1 = \boldsymbol{-0.0161}$ e $x_2 = \boldsymbol{-62.08}$.
+
+\item A fórmula racionalizada só mostra diferença de resultados com maior
+precisão. Também foi testada em uma calculadora científica convencional e os
+resultados são iguais à fórmula usual, embora todos diferentes dos reais.
+
+\item $abs\big(\frac{VA - VE}{VE}\big)
+= abs\big(\frac{-0.0161 - (-0.0161072)}{-0.016172}\big)
+= abs\big(\frac{7.2 \cdot 10^{-6}}{-0.016172}\big)
+\approx \boldsymbol{0.000447}$
+
+$abs\big(\frac{VA - VE}{VE}\big)
+= abs\big(\frac{-62.08 - (-62.0839)}{-62.0839}\big)
+= abs\big(\frac{3.9 \cdot 10^{-3}}{-62.0839}\big)
+\approx \boldsymbol{0.00006282}$
+
+\end{alphenum}
+
+\item \begin{alphenum}
+
+\item \begin{itemize}
+
+\item Erro absoluto: $abs(VA - VE) = abs(1102.345 - 1100.9)
+= \boldsymbol{1.445}$
+
+\item Erro relativo: $abs\big(\frac{VA - VE}{VE}\big)
+= abs\big(\frac{1.445}{1100.9}\big) \approx \boldsymbol{0.00131}$
+
+\item Percentual: $0.00131 \cdot 100 = \boldsymbol{0.131\%}$
+
+\end{itemize}
+
+\item \begin{itemize}
+
+\item Erro absoluto: $abs(VA - VE) = abs(0.01245 - 0.0119)
+= \boldsymbol{0.00055}$
+
+\item Erro relativo: $abs\big(\frac{VA - VE}{VE}\big)
+= abs\big(\frac{0.00055}{0.0119}\big) \approx \boldsymbol{0.04622}$
+
+\item Percentual: $0.04622 \cdot 100 = \boldsymbol{4.622\%}$
+
+\end{itemize}
+
+\end{alphenum}
+
+\item \begin{alphenum}
 
 \item Não é necessário fazer nenhum cálculo com a parte inteira. Então,
 $-(0.05)_{10} = (?)_2$
@@ -396,10 +462,77 @@ Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
 \hline
 \end{tabular}}
 
-\item O erro de arredondamento é próximo a $2^{-23} \cdot (0.10011001 \dots)_2
-\approx (7.15256)_{10} \cdot 10^{-8}$.
+\item O erro de arredondamento é próximo a $2^{-24} \cdot (1.\overline{1001})_2
+\approx (9.53674 \cdot 10^{-8})_{10} \approx
+\boldsymbol{9.53674 \cdot 10^{-6}\%}$.
 
 \end{alphenum}
+
+\item \begin{tabular}{*{3}{|c}|}
+\hline
+1 & 00000000 & 10000000000000000000001 \\
+\hline
+\end{tabular} (Número subnormal)
+
+$e = 0, f \neq 0 \longrightarrow
+v = (-1)^s \cdot \Big(\displaystyle\sum_{i=1}^{23} b_{23-i} 2^{-i} \Big)
+\cdot 2^{e - 126} = (-1)^1 \cdot (2^{-1} + 2^{-23}) \cdot 2^{-126}
+\approx \boldsymbol{-5.877473 \cdot 10^{-39}}$
+
+\item \begin{alphenum}
+
+\item  $(-1.51 \cdot 10^{+37})_{10} =
+(-1.011010111000010011101111010 \dots)_2 \cdot 2^{123}$
+
+$s = 1$ (número negativo)
+
+$e = 123 + 127 = (250)_{10} = (11111010)_2$
+(\emph{bias} + 123 bits decimais)
+
+$f = (01101011100001001110111)_2 + (1)_2 = (01101011100001001111000)_2$
+(primeiros 23 bits + arredondamento)
+
+Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
+\hline
+1 & 11111010 & 01101011100001001111000 \\
+\hline
+\end{tabular}}
+
+\item $2^{-24} \cdot (1.01010110011100011101011011 \dots)_2 \approx
+(7.97316 \cdot 10^{-8})_{10} \approx \boldsymbol{7.97316 \cdot 10^{-6}\%}$
+
+\end{alphenum}
+
+\item \begin{alphenum}
+
+\item $(-1.1 \cdot 10^{-41})_{10} =
+(-1.111010101001110111001100000 \dots)_2 \cdot 2^{-137}$
+
+$s = 1$ (número negativo)
+
+$e = -137 + 127 = -10 < 0 \longrightarrow$ número subnormal
+
+É necessário mover o decimal para que o número possa ser representado com $e =
+0$. Então, \\
+$(-1.111010101001110111001100000 \dots)_2 \cdot 2^{-137} =
+(-0.00000000001111010101001 \dots)_2 \cdot 2^{-126}$.
+
+Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
+\hline
+1 & 00000000 & 00000000001111010101010 \\
+\hline
+\end{tabular}}
+
+\item $2^{-23} \cdot (1.101110011000 \dots)_2 \approx
+(1.3126 \cdot 10^{-7})_{10} \approx \boldsymbol{1.3126 \cdot 10^{-5}\%}$.
+
+\end{alphenum}
+
+\item Caso seja viável calcular o resultado desejado à mão, ou utilizando
+ferramentas de maior precisão, é possível verificar o erro relativo sem
+maiores dificuldades. Porém, na maioria dos casos isso não acontece, e é
+necessário observar como o computador se comporta nestes casos. Esta
+aritmética de ponto flutuante é uma grande área de estudo do cálculo numérico.
 
 \item[\textbf{17, 18})] \begin{discusscode}{maclaurin.py}
 
@@ -415,8 +548,8 @@ série de Maclaurin com os argumentos fornecidos.
 
 \item Saída do programa:
 \begin{verbatim}
-0.0000069152325516942810432695874778286082573686144314706325531005859375%
-0.0000069138016857893659460184906939694826633058255538344383239746093750%
+0.00069152325516942810771509053680006218201015144586563110351562500%
+0.00069138016857893662848316695956896182906348258256912231445312500%
 \end{verbatim}
 
 \end{discusscode}
