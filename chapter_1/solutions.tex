@@ -393,14 +393,14 @@ x1 = -0.0161072                   x2 = -62.0839
 precisão. Também foi testada em uma calculadora científica convencional e os
 resultados são iguais à fórmula usual, embora todos diferentes dos reais.
 
-\item $abs\big(\frac{VA - VE}{VE}\big)
-= abs\big(\frac{-0.0161 - (-0.0161072)}{-0.016172}\big)
-= abs\big(\frac{7.2 \cdot 10^{-6}}{-0.016172}\big)
+\item $\big\vert\frac{VA - VE}{VE}\big\vert
+= \big\vert\frac{-0.0161 - (-0.0161072)}{-0.016172}\big\vert
+= \big\vert\frac{7.2 \cdot 10^{-6}}{-0.016172}\big\vert
 \approx \boldsymbol{0.000447}$
 
-$abs\big(\frac{VA - VE}{VE}\big)
-= abs\big(\frac{-62.08 - (-62.0839)}{-62.0839}\big)
-= abs\big(\frac{3.9 \cdot 10^{-3}}{-62.0839}\big)
+$\big\vert\frac{VA - VE}{VE}\big\vert
+= \big\vert\frac{-62.08 - (-62.0839)}{-62.0839}\big\vert
+= \big\vert\frac{3.9 \cdot 10^{-3}}{-62.0839}\big\vert
 \approx \boldsymbol{0.00006282}$
 
 \end{alphenum}
@@ -409,11 +409,11 @@ $abs\big(\frac{VA - VE}{VE}\big)
 
 \item \begin{itemize}
 
-\item Erro absoluto: $abs(VA - VE) = abs(1102.345 - 1100.9)
+\item Erro absoluto: $\vert VA - VE \vert = \vert 1102.345 - 1100.9 \vert
 = \boldsymbol{1.445}$
 
-\item Erro relativo: $abs\big(\frac{VA - VE}{VE}\big)
-= abs\big(\frac{1.445}{1100.9}\big) \approx \boldsymbol{0.00131}$
+\item Erro relativo: $\big\vert\frac{VA - VE}{VE}\big\vert
+= \big\vert\frac{1.445}{1100.9}\big\vert \approx \boldsymbol{0.00131}$
 
 \item Percentual: $0.00131 \cdot 100 = \boldsymbol{0.131\%}$
 
@@ -421,11 +421,11 @@ $abs\big(\frac{VA - VE}{VE}\big)
 
 \item \begin{itemize}
 
-\item Erro absoluto: $abs(VA - VE) = abs(0.01245 - 0.0119)
+\item Erro absoluto: $\vert VA - VE \vert = \vert 0.01245 - 0.0119 \vert
 = \boldsymbol{0.00055}$
 
-\item Erro relativo: $abs\big(\frac{VA - VE}{VE}\big)
-= abs\big(\frac{0.00055}{0.0119}\big) \approx \boldsymbol{0.04622}$
+\item Erro relativo: $\big\vert\frac{VA - VE}{VE}\big\vert
+= \big\vert\frac{0.00055}{0.0119}\big\vert \approx \boldsymbol{0.04622}$
 
 \item Percentual: $0.04622 \cdot 100 = \boldsymbol{4.622\%}$
 
@@ -435,8 +435,8 @@ $abs\big(\frac{VA - VE}{VE}\big)
 
 \item \begin{alphenum}
 
-\item Não é necessário fazer nenhum cálculo com a parte inteira. Então,
-$-(0.05)_{10} = (?)_2$
+\item Sabe-se que $(10)_{10} = (1010)_2$. O cálculo da parte decimal segue
+abaixo: $-(0.05)_{10} = (?)_2$
 \begin{gather*}
 \begin{array}{*{11}c}
 0.05 & 0.1 & 0.2 & 0.4 & 0.8 & 0.6 & 0.2 & 0.4 & 0.8 & 0.6 & \\
@@ -446,25 +446,30 @@ $-(0.05)_{10} = (?)_2$
 \redn{0}.4 & \redn{0}.8 & \redn{1}.6 & \redn{1}.2 &
 \end{array} \\
 -(0.05)_{10} = -(0.00\overline{0011})_2 =
-1 \cdot 2^{-5} \cdot -(0.\overline{1001})_2
+1 \cdot 2^{-5} \cdot -(0.\overline{1001})_2 \\
+(-10.05)_{10} = (1010.0000\overline{1100})_2 = (1.0100000\overline{1100})_2
+\cdot 2^{3}
 \end{gather*}
 $s = 1$ (sinal negativo)
 
-$e = -5 + 127 = 122$ (polarização ou \emph{exponent bias})
+$e = 3 + 127 = 130$ (polarização ou \emph{exponent bias})
 
-O arredondamento no bit final da mantissa acontece pois a fração binária começa
-por 1, ou seja, é maior do que $(0.5)_{10}$. A parcela binária arredondada é
-igual a $2^{-23} \cdot (0.10011001 \dots)_2$
+O arredondamento no bit final da mantissa acontece pois a fração binária termina
+por 1. A parcela binária arredondada é igual a $2^{-23} \cdot
+(0.\overline{1100})_2$
 
 Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
 \hline
-1 & 01111010 & 10011001100110011001101 \\
+1 & 10000010 & 01000001100110011001101 \\
 \hline
 \end{tabular}}
 
-\item O erro de arredondamento é próximo a $2^{-24} \cdot (1.\overline{1001})_2
-\approx (9.53674 \cdot 10^{-8})_{10} \approx
-\boldsymbol{9.53674 \cdot 10^{-6}\%}$.
+\item Convertendo novamente o número para decimal, tem-se
+$VA = (-10.050000190734863)_{10}$.
+
+O percentual de erro é igual a
+$\big\vert\frac{VA - VE}{VE}\big\vert \cdot 100
+\approx \boldsymbol{1.897856 \cdot 10^{-6}\%}$.
 
 \end{alphenum}
 
@@ -480,7 +485,6 @@ v = (-1)^s \cdot \Big(\displaystyle\sum_{i=1}^{23} b_{23-i} 2^{-i} \Big)
 \approx \boldsymbol{-5.877473 \cdot 10^{-39}}$
 
 \item \begin{alphenum}
-
 \item  $(-1.51 \cdot 10^{+37})_{10} =
 (-1.011010111000010011101111010 \dots)_2 \cdot 2^{123}$
 
@@ -491,15 +495,18 @@ $e = 123 + 127 = (250)_{10} = (11111010)_2$
 
 $f = (01101011100001001110111)_2 + (1)_2 = (01101011100001001111000)_2$
 (primeiros 23 bits + arredondamento)
-
 Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
 \hline
 1 & 11111010 & 01101011100001001111000 \\
 \hline
 \end{tabular}}
 
-\item $2^{-24} \cdot (1.01010110011100011101011011 \dots)_2 \approx
-(7.97316 \cdot 10^{-8})_{10} \approx \boldsymbol{7.97316 \cdot 10^{-6}\%}$
+\item Convertendo novamente o número para decimal, tem-se
+$VA = (-1.51000004197986229847484292417978368 \cdot 10^{37})_{10}$.
+
+O percentual de erro é igual a
+$\big\vert\frac{VA - VE}{VE}\big\vert \cdot 100
+\approx \boldsymbol{2.7801 \cdot 10^{-6}\%}$.
 
 \end{alphenum}
 
@@ -523,8 +530,12 @@ Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
 \hline
 \end{tabular}}
 
-\item $2^{-23} \cdot (1.101110011000 \dots)_2 \approx
-(1.3126 \cdot 10^{-7})_{10} \approx \boldsymbol{1.3126 \cdot 10^{-5}\%}$.
+\item Convertendo novamente o número para decimal, tem-se
+$VA = -1.1000192944949814 \cdot 10^{-41}$
+
+O percentual de erro é igual a
+$\big\vert\frac{VA - VE}{VE}\big\vert \cdot 100
+= \boldsymbol{1.7540449983\overline{09} \cdot 10^{-3}\%}$.
 
 \end{alphenum}
 
