@@ -374,36 +374,22 @@ $=$ \verb!f! e $e,f \neq 0$, então $\frac{e}{f} = g = 1$.
 equação quadrática, além de imprimir o resultado arredondado para o operador
 aritmético $F(10, 4, -99, +99)$ e os resultados reais.
 
+\item Observa-se que, onde não existem subtrações internas para
+calcular o resultado final, o erro relativo mostra-se muito inferior,
+assim gerando resultado mais confiáveis. Utilizando precisão dupla,
+os erros tornam-se irrelevantes entre si -- a diferença entre métodos
+é da ordem de $1 \cdot 10^{-14}$.
+
 \item Saída do programa:
 
 \begin{verbatim}
-x1 = -0.0161072374089670233843208 x2 = -62.0838927625910343977011507
-x1 = -0.0161072374089685811660022 x2 = -62.0838927625970313783909660
-x1 = -0.0161                      x2 = -62.08
-x1 = -0.0161072                   x2 = -62.0839
+-0.015 -62.09
+0.07381333333333329 9.824448381387577e-05
+-0.0161 -66.67
+0.00044720496894402943 0.06878806059697018
 \end{verbatim}
 
 \end{discusscode}
-
-\begin{alphenum}
-
-\item $x_1 = \boldsymbol{-0.0161}$ e $x_2 = \boldsymbol{-62.08}$.
-
-\item A fórmula racionalizada só mostra diferença de resultados com maior
-precisão. Também foi testada em uma calculadora científica convencional e os
-resultados são iguais à fórmula usual, embora todos diferentes dos reais.
-
-\item $\big\vert\frac{VA - VE}{VE}\big\vert
-= \big\vert\frac{-0.0161 - (-0.0161072)}{-0.016172}\big\vert
-= \big\vert\frac{7.2 \cdot 10^{-6}}{-0.016172}\big\vert
-\approx \boldsymbol{0.000447}$
-
-$\big\vert\frac{VA - VE}{VE}\big\vert
-= \big\vert\frac{-62.08 - (-62.0839)}{-62.0839}\big\vert
-= \big\vert\frac{3.9 \cdot 10^{-3}}{-62.0839}\big\vert
-\approx \boldsymbol{0.00006282}$
-
-\end{alphenum}
 
 \item \begin{alphenum}
 
