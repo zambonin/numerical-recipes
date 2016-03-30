@@ -440,8 +440,8 @@ $s = 1$ (sinal negativo)
 
 $e = 3 + 127 = 130$ (polarização ou \emph{exponent bias})
 
-O arredondamento no bit final da mantissa acontece pois a fração binária termina
-por 1. A parcela binária arredondada é igual a $2^{-23} \cdot
+O arredondamento no bit final da mantissa acontece pois a fração binária
+termina por 1. A parcela binária arredondada é igual a $2^{-23} \cdot
 (0.\overline{1100})_2$
 
 Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
@@ -471,16 +471,24 @@ v = (-1)^s \cdot \Big(\displaystyle\sum_{i=1}^{23} b_{23-i} 2^{-i} \Big)
 \approx \boldsymbol{-5.877473 \cdot 10^{-39}}$
 
 \item \begin{alphenum}
-\item  $(-1.51 \cdot 10^{+37})_{10} =
-(-1.011010111000010011101111010 \dots)_2 \cdot 2^{123}$
+\item Para descobrir a ordem desse número, é necessário estimar a partir do
+cálculo de expoente. Ignorando o sinal e a mantissa, sabe-se que
+$(1.51 \cdot 10^{37})_{10} \approx 2^{e - 127}$ (aparentemente, $0 < e < 255$).
 
-$s = 1$ (número negativo)
+Segue que $log_2 (1.51 \cdot 10^{37}) = log_2 (2^{e - 127})$. Logo,
+$123.5058 \approx e - 127$ e, como o número de bits precisa ser arredondado
+para baixo, então $123 = e - 127$ e por fim $e = 250$. O número é negativo,
+então $s = 1$.
 
-$e = 123 + 127 = (250)_{10} = (11111010)_2$
-(\emph{bias} + 123 bits decimais)
+Tem-se então, $(-1.51 \cdot 10^{+37})_{10} =
+(-1)^1 \cdot 2^{250 - 127} \cdot (1.f)_2 \longrightarrow
+\frac{1.51 \cdot 10^{37}}{2^{123}} = (1.f)_2$. Multiplicando sucessivamente o
+decimal obtido, conclui-se que $(-1.51 \cdot 10^{+37})_{10} = 
+(-1.011010111000010011101111010 \dots)_2 \cdot 2^{123}$.
 
 $f = (01101011100001001110111)_2 + (1)_2 = (01101011100001001111000)_2$
 (primeiros 23 bits + arredondamento)
+
 Resultado final: \textbf{\begin{tabular}{*{3}{|c}|}
 \hline
 1 & 11111010 & 01101011100001001111000 \\
@@ -498,12 +506,14 @@ $\big\vert\frac{VA - VE}{VE}\big\vert \cdot 100
 
 \item \begin{alphenum}
 
-\item $(-1.1 \cdot 10^{-41})_{10} =
-(-1.111010101001110111001100000 \dots)_2 \cdot 2^{-137}$
+\item $(-1.1 \cdot 10^{-41})_{10} = (-1)^1 \cdot 2^{-126} \cdot (0.f)_2$ com
+$e \leq 0$, pois $log_2 (1.1 \cdot 10^{-41}) \approx -136$, o que implica em
+$e = -136 + 127 = -9 < 0 \longrightarrow$ número subnormal)
 
-$s = 1$ (número negativo)
-
-$e = -137 + 127 = -10 < 0 \longrightarrow$ número subnormal
+Então, para descobrir a mantissa $f$, calcula-se
+$\frac{1.1 \cdot 10^{-41}}{2^{-126}}$ e multiplica-se o decimal para encontrar
+seu valor binário. Por fim, $(-1.1 \cdot 10^{-41})_{10} =
+(-1.111010101001110111001100000 \dots)_2 \cdot 2^{-137}$.
 
 É necessário mover o decimal para que o número possa ser representado com $e =
 0$. Então, \\
