@@ -30,8 +30,6 @@ def part_pivot_gaussian_elim(A, b):
 
     for i in range(n-1):
         ext = partial_pivoting(ext, i, n)
-
-        print(ext)
         for j in range(i+1, n):
             mult = ext[j][i] / ext[i][i]
             ext[j][i] = mult
@@ -64,18 +62,7 @@ def max_residual(x, A, b):
 def partial_pivoting(mat, k, n):
     """Changes rows to achieve an useful matrix setup."""
     col = [i[k] for i in mat]
-    i = col.index(max(col)) + k - 1
+    i = col.index(max(col))
     mat[k], mat[i] = mat[i], mat[k]
 
     return mat
-
-
-A = [[3, 1, -1], [4, -2, 1], [5, 3, 3]]
-b = [1, -1, 2]
-x = naive_gaussian_elim(A, b)
-print(x)
-
-A = [[0, 1, -1], [4, -2, 1], [0, 2, -2]]
-b = [1, -1, 2]
-x = part_pivot_gaussian_elim(A, b)
-print(x)
