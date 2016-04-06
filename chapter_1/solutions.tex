@@ -239,8 +239,8 @@ $0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $1$ \\
 Logo, a região de \emph{overflow} é
 $\boldsymbol{\{x \in \mathbb{R} \mid x < -(7)_{10} \cup x > (7)_{10}\}}$.
 
-\item A precisão decimal equivalente é aproximadamente
-$log_{10} (2^3) = 3 \cdot log_{10} (2) \approx \boldsymbol{0.90308998699}$.
+\item A precisão decimal equivalente é igual a $2^{1 - t} = 2^{1 - 3} = 2^{-2}
+= \boldsymbol{2.5 \cdot 10^{-1}}$.
 
 \item $F(2, 3, 0, 6)$ (polarização $p = +3$)
 
@@ -249,24 +249,24 @@ $log_{10} (2^3) = 3 \cdot log_{10} (2) \approx \boldsymbol{0.90308998699}$.
 \item $F(\beta, t, I, S) \longrightarrow F(2, 3, 0, +7) \longrightarrow$
 \begin{tabular}{*{8}{|c}|}
 \hline
-$s_1$ & $d_1$ & $d_2$ & $d_3$ & $0$ & $e_1$ & $e_2$ & $e_3$ \\
+$s_1$ & $d_2$ & $d_3$ & $d_4$ & $0$ & $e_1$ & $e_2$ & $e_3$ \\
 \hline
 \end{tabular}
 \begin{alphenum}
 
-\item $NM = (\beta - 1) \cdot \beta^{t - 1} = (2 - 1) \cdot 2^{3 - 1} =
-\boldsymbol{4}$
+\item $NM = (\beta - 1) \cdot \beta^{t - 1} = (2 - 1) \cdot 2^{4 - 1} =
+\boldsymbol{8}$
 
 \item $NE = S - I + 1 = 7 - 0 + 1 = \boldsymbol{8}$
 
-\item $NR = 2 \cdot NM \cdot NE + 1 = \boldsymbol{65}$
+\item $NR = 2 \cdot NM \cdot NE + 1 = \boldsymbol{129}$
 
 \item \begin{tabular}{*{8}{|c}|}
 \hline
-$0$ & $1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
+$0$ & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
 \hline
-\end{tabular} $\longrightarrow m.p. = (0.1)_2 \cdot (2^{0})_{10} =
-(2^{-1})_{10} \cdot (1)_{10} = \boldsymbol{(0.5)_{10}}$
+\end{tabular} $\longrightarrow m.p. = (0.001)_2 \cdot (2^{-2})_{10} =
+(2^{-5})_{10} \cdot (1)_{10} = \boldsymbol{(0.03125)_{10}}$
 
 Logo, a região de \emph{underflow} é
 $\boldsymbol{\{x \in \mathbb{R} \mid -(0.5)_{10} < x < (0.5)_{10}\}}$.
@@ -275,14 +275,14 @@ $\boldsymbol{\{x \in \mathbb{R} \mid -(0.5)_{10} < x < (0.5)_{10}\}}$.
 \hline
 $0$ & $1$ & $1$ & $1$ & $0$ & $1$ & $1$ & $1$ \\
 \hline
-\end{tabular} $\longrightarrow m.p. = (0.111)_2 \cdot (2^{7})_{10} =
-(0.875)_{10} \cdot (2^7)_{10} = \boldsymbol{(112)_{10}}$
+\end{tabular} $\longrightarrow M.P. = (1.111)_2 \cdot (2^{6 - 3})_{10} =
+(1.875)_{10} \cdot (2^3)_{10} = \boldsymbol{(15)_{10}}$
 
 Logo, a região de \emph{overflow} é
-$\boldsymbol{\{x \in \mathbb{R} \mid x < -(112)_{10} \cup x > (112)_{10}\}}$.
+$\boldsymbol{\{x \in \mathbb{R} \mid x < -(15)_{10} \cup x > (15)_{10}\}}$.
 
-\item A precisão decimal equivalente é aproximadamente
-$log_{10} (2^3) = 3 \cdot log_{10} (2) \approx \boldsymbol{0.90308998699}$.
+\item A precisão decimal equivalente é igual a $2^{1 - t} = 2^{1 - 4} = 2^{-3}
+= \boldsymbol{1.25 \cdot 10^{-1}}$.
 
 \end{alphenum}
 
@@ -321,7 +321,7 @@ Traceback (most recent call last):
 OverflowError: int too large to convert to float
 \end{verbatim}
 
-\item $log_{10} (2^{53}) = 53 \cdot log_{10} (2) \approx \boldsymbol{15.9546}$
+\item $log_{10} (2^{52}) = 52 \cdot log_{10} (2) \approx \boldsymbol{15.6535}$
 
 \item \begin{discusscode}{div_by_zero.py}
 
