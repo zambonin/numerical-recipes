@@ -1,5 +1,13 @@
 def naive_gaussian_elim(A, b):
-    """Gaussian elimination with backward substitution and no pivoting."""
+    """Gaussian elimination with backward substitution and no pivoting.
+
+    Args:
+        A: the matrix of coefficients.
+        b: the constant terms.
+
+    Returns:
+        x: the solution for the system of equations.
+    """
     assert len(A) == len(b), "A and b have different sizes."
     ext = [j + [b[i]] for i, j in enumerate(A)]
     n = len(ext)
@@ -23,7 +31,15 @@ def naive_gaussian_elim(A, b):
 
 
 def part_pivot_gaussian_elim(A, b):
-    """Gaussian elimination with backward substitution and partial pivoting."""
+    """Gaussian elimination with backward substitution and partial pivoting.
+
+    Args:
+        A: the matrix of coefficients.
+        b: the constant terms.
+
+    Returns:
+        x: the solution for the system of equations.
+    """
     assert len(A) == len(b), "A and b have different sizes."
     ext = [j + [b[i]] for i, j in enumerate(A)]
     n = len(ext)
@@ -48,7 +64,17 @@ def part_pivot_gaussian_elim(A, b):
 
 
 def max_residual(x, A, b):
-    """Largest residual from solving a system of linear equations."""
+    """Largest residual from solving a system of linear equations.
+
+    Args:
+        x: the solution for the system.
+        A: the matrix of coefficients.
+        b: the constant terms.
+
+    Returns:
+        max(r): the maximum value from the list of differences obtained from
+                applying the solution to the matrix.
+    """
     n = len(A)
     r = [0]*n
 
@@ -60,7 +86,16 @@ def max_residual(x, A, b):
 
 
 def partial_pivoting(mat, k, n):
-    """Changes rows to achieve an useful matrix setup."""
+    """Changes rows to achieve an useful matrix setup.
+
+    Args:
+        mat: the matrix of coefficients.
+        k: the row with an offending value.
+        n: the destination row.
+
+    Returns:
+        mat: a matrix with switched rows.
+    """
     col = [i[k] for i in mat]
     i = col.index(max(col))
     mat[k], mat[i] = mat[i], mat[k]
