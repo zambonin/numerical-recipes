@@ -33,7 +33,7 @@ def jacobi_method(A, b, n_it, tol=float_info.epsilon):
     return x
 
 
-def SOR(A, b, n_it, relax, tol=float_info.epsilon):
+def SOR(A, b, n_it, relax=1, tol=float_info.epsilon):
     """Successive over-relaxation is a variant of Gauss-Seidel, where a
     chosen relaxation factor may result in faster or slower convergence.
 
@@ -107,3 +107,18 @@ def tridiag_matrix_alg(A, d):
         x[k-1] = (d[k-1] - c[k-1] * x[k]) / b[k-1]
 
     return x
+
+
+def check_diagonal_dominance(mat):
+    """Check if a matrix is diagonally dominant.
+
+    Args:
+        mat: the matrix of coefficients.
+
+    Returns:
+        The all operator returns True if all elements of a list are
+        also True. Hence, if any element fails to be dominant over
+        its row, the matrix itself cannot be diagonally dominant.
+    """
+    return all(abs(mat[i][i]) > sum(abs(k) for k in j) - abs(mat[i][i])
+               for i, j in enumerate(mat))
