@@ -128,16 +128,16 @@ Neste caso, como seu resultado é \verb!False!, nada se pode afirmar sobre a
 convergência desse sistema linear, e assim, fatores de relaxação devem ser
 testados.
 
-\item Em virtude da escolha do épsilon de máquina $(\epsilon)$ como tolerância
-padrão para a parada de iterações, é possível efetuar um grande número de
-iterações e visualizar um fator de relaxação $(\omega)$ que gere melhores
-resultados. Primeiramente, foi-se testado o intervalo total de fatores válidos
-$(0 < \omega < 2)$ com um número de iterações baixo ($100$), e percebeu-se
-um grande número de decimais exatos após à virgula perto do número
-$\boldsymbol{1.80}$. Diminuindo o intervalo e aumentando o número de iterações
-para $1000$, concluiu-se que $\omega = \boldsymbol{1.878}$ é um bom valor,
-com precisão de 13 casas após à vírgula com tolerância $= \epsilon$ na primeira
-equação do sistema linear.
+\item Em virtude da escolha do épsilon de máquina de precisão dupla
+$(\epsilon \approx 2.22 \cdot 10^{-16})$ como tolerância padrão para a parada
+de iterações, é possível efetuar um grande número de iterações e visualizar um
+fator de relaxação $(\omega)$ que gere melhores resultados. Primeiramente,
+foi-se testado o intervalo total de fatores válidos $(0 < \omega < 2)$ com um
+número de iterações baixo ($100$), e percebeu-se um grande número de decimais
+exatos após à virgula perto do número $\boldsymbol{1.80}$. Diminuindo o 
+intervalo e aumentando o número de iterações para $1000$, concluiu-se que
+$\omega = \boldsymbol{1.878}$ é um bom valor, com precisão de 13 casas após à
+vírgula com tolerância $= \epsilon$ na primeira equação do sistema linear.
 
 \item O resultado abaixo é calculado com $\omega = 1.878$ e
 $\epsilon = 1 \cdot 10^{-4}$.
@@ -206,7 +206,8 @@ c \cdot n \cdot s \cdot (n + 4) = \boldsymbol{3224000}c.
 \end{equation*}
 
 \item O maior erro de truncamento relativo foi calculado a partir da diferença
-entre as soluções obtidas com $s = 1000$ e $s = 2000$:
+entre as soluções obtidas com $s = 1000$ e $s = 2000$, $\omega = 1.878$
+e $\epsilon \approx 2.22 \cdot 10^{-16}$:
 $\boldsymbol{1.2350565015140091 \cdot 10^{-11}}$.
 
 \end{alphenum}
