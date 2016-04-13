@@ -38,11 +38,7 @@ também \href{https://github.com/zambonin/ufsc-ine5409}{neste repositório}.
 
 \item A solução para o sistema de equações lineares fornecido, a partir de um
 método direto, é apresentada abaixo. O método escolhido, em virtude das
-características do sistema linear, foi a eliminação Gaussiana simples.
-Por conta da diferença de comportamento do operador de divisão
-(\texttt{/}) entre versões da linguagem escolhida (Python), o ambiente
-virtual de programação gerará resultados diferentes, mas que também
-estarão corretos.
+características do sistema linear, é a eliminação Gaussiana simples.
 
 \begin{verbatim}
 [-2.8561706131735374, 4.356170613173537, -4.113756834522826, 4.038439287217356,
@@ -72,14 +68,14 @@ estarão corretos.
 -14.94259515940912, 16.26920140075033, -16.449437352909992, 19.449437352909996]
 \end{verbatim}
 
-\item Considera-se $n = 100$ o número de equações do sistema,
-e $c$ uma unidade de computação.
+\item Considera-se $n$ o número de equações do sistema, e $c$ uma unidade de
+computação.
 
 \begin{itemize}
 
 \item Para somas, tem-se
 \begin{equation*}
-\sum_{i=1}^n \sum_{j=i+1}^n c = \frac{c}{2} (n-1)n = \boldsymbol{4950}c
+\sum_{i=1}^n \sum_{j=i+1}^n c = c \cdot n \cdot \Big( \frac{1}{2}(n-1) \Big)
 \end{equation*}
 
 \item Para subtrações, tem-se
@@ -87,7 +83,6 @@ e $c$ uma unidade de computação.
 c \cdot n + \sum_{i=1}^n \sum_{j=i+1}^n c
 + \sum_{i=1}^n \sum_{j=i+1}^n \sum_{k=i+1}^n c
 = c \cdot n \cdot \Big( \frac{1}{6}(2n^2 - 3n + 1) + \frac{1}{2}(n-1) + 1 \Big)
-= \boldsymbol{333400}c
 \end{equation*}
 
 \item Para multiplicações, tem-se
@@ -95,21 +90,19 @@ c \cdot n + \sum_{i=1}^n \sum_{j=i+1}^n c
 2 \cdot \Big( \sum_{i=1}^n \sum_{j=i+1}^n c \Big)
 + \sum_{i=1}^n \sum_{j=i+1}^n \sum_{k=i+1}^n c
 = c \cdot n \cdot \Big( (n-1) + \frac{1}{6}(2n^2 - 3n + 1) \Big)
-= \boldsymbol{338250}c
 \end{equation*}
 
 \item Para divisões, tem-se
 \begin{equation*}
 c \cdot n + \sum_{i=1}^n \sum_{j=i+1}^n c
-= c \cdot n \cdot \Big( \frac{1}{2}(n-1) + 1 \Big) = \boldsymbol{5050}c
+= c \cdot n \cdot \Big( \frac{1}{2}(n-1) + 1 \Big)
 \end{equation*}
 
 \end{itemize}
 
 Então, o número final de operações é de
 \begin{equation*}
-c \cdot n \cdot \Big( \frac{5}{2}(n-1) + \frac{1}{3}(2n^2 - 3n + 1) + 2 \Big)
-= \boldsymbol{681650}c.
+c \cdot n \cdot \Big( \frac{5}{2}(n-1) + \frac{1}{3}(2n^2 - 3n + 1) + 2 \Big).
 \end{equation*}
 
 \end{alphenum}
@@ -128,87 +121,86 @@ Neste caso, como seu resultado é \verb!False!, nada se pode afirmar sobre a
 convergência desse sistema linear, e assim, fatores de relaxação devem ser
 testados.
 
-\item Em virtude da escolha do épsilon de máquina de precisão dupla
-$(\epsilon \approx 2.22 \cdot 10^{-16})$ como tolerância padrão para a parada
-de iterações, é possível efetuar um grande número de iterações e visualizar um
-fator de relaxação $(\omega)$ que gere melhores resultados. Primeiramente,
-foi-se testado o intervalo total de fatores válidos $(0 < \omega < 2)$ com um
-número de iterações baixo ($100$), e percebeu-se um grande número de decimais
-exatos após à virgula perto do número $\boldsymbol{1.80}$. Diminuindo o
-intervalo e aumentando o número de iterações para $1000$, concluiu-se que
-$\omega = \boldsymbol{1.879}$ é um bom valor, com precisão de 13 casas após à
-vírgula com tolerância máxima e um grande número de iterações $s$ (na casa dos
-milhares) na primeira equação do sistema linear.
+\item Em virtude da escolha do épsilon de máquina de precisão dupla $(\epsilon
+\approx 2.22 \cdot 10^{-16})$ como tolerância padrão para a parada de iterações
+no método SOR (\emph{sucessive over-relaxation}), é possível efetuar um grande
+número de iterações e visualizar um fator de relaxação $(\omega)$ que gere
+melhores resultados. Primeiramente, foi-se testado o intervalo total de fatores
+válidos $(0 < \omega < 2)$ com um número de iterações baixo ($100$), e percebeu-
+se um grande número de decimais exatos após à virgula perto do número
+$\boldsymbol{1.80}$. Diminuindo o intervalo e aumentando o número de iterações
+para $1000$, concluiu-se que $\omega = \boldsymbol{1.879}$ é um bom valor, com
+precisão de 13 casas após à vírgula com tolerância máxima e um grande número de
+iterações $s$ (na casa dos milhares) na primeira equação do sistema linear.
 
 \item O resultado abaixo é calculado com $\omega = 1.879$,
-$\epsilon = 1 \cdot 10^{-4}$ e $s = 150$.
+$\epsilon = 1 \cdot 10^{-4}$ e $s = 500$.
 
 \begin{verbatim}
-[-3.098775216969785, 4.596498273362075, -4.353099636577799, 4.276199601925939,
--3.6092040299531765, 3.418035426243635, -2.7197343870941966, 2.518832125493246,
--1.816571746718871, 1.6130187822588289, -0.9089379846543, 0.7037829019709383,
-0.0017094984745903326, -0.2080855130770804, 0.9149755904063958, -1.1223686233528056,
-1.830532694013092, -2.0387717675064376, 2.7479393997412833, -2.9569757563690455,
-3.6667946120974086, -3.876652798794816, 4.586784274071997, -4.797375310775868,
-5.507621136763481, -5.718673395082979, 6.428996387627036, -6.640072023048315,
-7.3505420250273215, -7.561161671718348, 8.27178506807633, -8.481648001483485,
-9.192154140429789, -9.401259823221155, 10.111184862892717, -10.319737948063864,
-11.02843817371053, -11.236597311117318, 11.943774285665926, -12.151543563196872,
-12.857104856868913, -13.063644021203409, 13.767908282821304, -13.97254257013018,
-14.674047958187199, -14.86710171140741, 15.535208476685654, -15.607296810677765,
-15.82938333341767, -14.230273227134225, 8.217849764433309, -5.329161003791172,
-5.17941597477404, -3.8605763251330023, 4.129002975284398, -2.9202407268717376,
-3.2167618626530627, -2.0146120257799165, 2.3119864145675204, -1.108781074387703,
-1.4047524564782048, -0.19979369097531094, 0.49438182413468723, 0.7120309688744092,
--0.41865402069264207, 1.626209827897767, -1.3340494071339244, 2.5424492201785993,
--2.2514010821783645, 3.460397930762948, -3.1702138197451033, 4.379714723891483,
--4.090047764683521, 5.300069282493173, -5.010516012534109, 6.221055800294174,
--5.931321585618959, 7.14219157831808, -6.852197700667298, 8.062992062497708,
--7.772822466002289, 8.983048181893864, -8.692806771382974, 9.902024341592437,
--9.611607499914793, 10.819749547973062, -10.528771552281166, 11.73598975960688,
--11.4437418458562, 12.650406765079923, -12.35657977634405, 13.562842549552416,
--13.2670341373973, 14.47287021006451, -14.178302343984296, 15.391833692726522,
--15.127914855967466, 16.45740094992643, -16.640369714611936, 19.639346109992708]
+[-2.856174712480373, 4.356175656586068, -4.113767927141613, 4.0384578415033525,
+-3.373946832412452, 3.1855342893658825, -2.490717332327044, 2.2941842583431327,
+-1.5971912946745552, 1.4000750775189341, -0.7029256009703317, 0.5057671741869292,
+0.19139395829268932, -0.3885558984779885, 1.0857183334162417, -1.282881121935825,
+1.9800441982996733, -2.1772077402425247, 2.8743715188488084, -3.071535846551343,
+3.7687004453832307, -3.96586556908092, 4.663031099116311, -4.860197038404439,
+5.557363563375291, -5.7545303749205035, 6.451697891208179, -6.648865672014814,
+7.346034127013814, -7.543202974714648, 8.240372313905338, -8.437542274642249,
+9.134712498148414, -9.33188351828323, 10.029054676235443, -10.226226607358544,
+10.923398745795158, -11.120571231680495, 11.817743560650708, -12.01491352184236,
+12.712074931391198, -12.90920119764235, 13.606197403951445, -13.802705040272082,
+14.497390396055382, -14.685273175562498, 15.34776658154788, -15.415505927929194,
+15.629616127017108, -14.023968294604092, 7.992910746001128, -5.0985869651569935,
+4.946672187404567, -3.627660085780336, 3.8978491802368667, -2.6919396064705703,
+2.9924343670396847, -1.7946449397852384, 2.0973152507581747, -0.900108589648829,
+1.2029348102632038, -0.005769726850836549, 0.30860672543611967, 0.8885557928525473,
+-0.5857185369961594, 1.7828814221301357, -1.4800447090327213, 2.6772082953537426,
+-2.3743722409018617, 3.5715366519587306, -3.2687013455809155, 4.4658666306216075,
+-4.163032179716995, 5.360198336515029, -5.057364852259886, 6.254531866503875,
+-5.951699421351235, 7.14886730835849, -6.8460359041518055, 8.043204730700085,
+-7.740374297511884, 8.9375441536703, -8.634714597883152, 9.831885550924712,
+-9.529056820661879, 10.726228844410288, -10.423401009035116, 11.620574196964796,
+-11.3177481556616, 12.514925259208868, -12.212112072922006, 13.40933422214768,
+-13.106687999503325, 14.304530053474275, -14.0041957421782, 15.210664199370601,
+-14.942522976379943, 16.269136433854502, -16.449378206596013, 19.44937955528533]
 \end{verbatim}
 
-\item Considera-se $n = 100$ o número de equações do sistema, $s = 150$ o
-número de iterações e $c$ uma unidade de computação.
+\item Considera-se $n$ o número de equações do sistema, $s$ o número de
+iterações, e $c$ uma unidade de computação.
 
 \begin{itemize}
 
 \item Para somas, tem-se
 \begin{equation*}
 2 \cdot c \cdot s + \sum_{i=1}^s \Big( 6 \cdot \sum_{j=2}^{n/2} \Big) c
-= c \cdot s \cdot (3n - 4) = \boldsymbol{44400}c
+= c \cdot s \cdot (3n - 4)
 \end{equation*}
 
 \item Para subtrações, tem-se
 \begin{equation*}
 2 \cdot \sum_{i=1}^s \sum_{i}^n c = 2 \cdot c \cdot n \cdot s
-= \boldsymbol{30000}c
 \end{equation*}
 
 \item Para multiplicações, tem-se
 \begin{equation*}
-\sum_{i=1}^s \sum_{i}^n c = c \cdot n \cdot s = \boldsymbol{15000}c
+\sum_{i=1}^s \sum_{i}^n c = c \cdot n \cdot s
 \end{equation*}
 
 \item Para divisões, tem-se
 \begin{equation*}
-\sum_{i=1}^s \sum_{i}^n c = c \cdot n \cdot s = \boldsymbol{15000}c
+\sum_{i=1}^s \sum_{i}^n c = c \cdot n \cdot s
 \end{equation*}
 
 \end{itemize}
 
 Então, o número final de operações é de
 \begin{equation*}
-c \cdot s \cdot (7n - 4) = \boldsymbol{104400}c.
+c \cdot s \cdot (7n - 4).
 \end{equation*}
 
 \item O maior erro de truncamento relativo foi calculado a partir da diferença
-entre as soluções obtidas com $s = 150$ e $s = 300$, $\omega = 1.879$
-e $\epsilon = 1 \cdot 10^{-4}$: $0.2501711778734865 \approx
-\boldsymbol{2.5 \cdot 10^{-1}}$.
+($\big\vert \frac{VA - VE}{VE} \big\vert$ onde $VA$ é o resultado do método SOR,
+e $VE$ é o resultado da eliminação Gaussiana) entre as soluções obtidas acima:
+$0.0138600924952 \approx \boldsymbol{1.386 \cdot 10^{-2}}$.
 
 \end{alphenum}
 
