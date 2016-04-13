@@ -152,10 +152,10 @@ iterações.
 \item $(10000)_{F!} = 1 \cdot 5! = \boldsymbol{(120)_{10}}$
 
 \item $(0.02)_{F!} = \frac{0}{2!} + \frac{2}{3!} = (\frac{2}{6})_{10} =
-(\frac{1}{3})_{10} = \boldsymbol{(0.333333 \dots)_{10}}$
+(\frac{1}{3})_{10} = \boldsymbol{(0.\overline{3})_{10}}$
 
 \item $(0.113)_{F!} = \frac{1}{2!} + \frac{1}{3!} + \frac{3}{4!} =
-(\frac{19}{24})_{10} = \boldsymbol{(0.791\overline{6} \dots)_{10}}$
+(\frac{19}{24})_{10} = \boldsymbol{(0.791\overline{6})_{10}}$
 
 \item $(321.123)_{F!} = 3 \cdot 3! + 2 \cdot 2! + 1 \cdot 1! + \frac{1}{2!} +
 \frac{2}{3!} + \frac{3}{4!} = (\frac{575}{24})_{10} =
@@ -242,7 +242,17 @@ $\boldsymbol{\{x \in \mathbb{R} \mid x < -(7)_{10} \cup x > (7)_{10}\}}$.
 \item A precisão decimal equivalente é igual a $2^{1 - t} = 2^{1 - 3} = 2^{-2}
 = \boldsymbol{2.5 \cdot 10^{-1}}$.
 
-\item $F(2, 3, 0, 6)$ (polarização $p = +3$)
+\item $F(2, 3, 0, 7)$ padrão IEEE 754 (1985) com $d_1 \neq 0 = 1$ antes da
+vírgula e representado implicitamente antes da vírgula e mais 3 bits
+significativos após a vírgula e  polarização $p = +3$, conforme segue:
+\begin{align*}
+\begin{cases}
+0 < e < 7 & \longrightarrow v = (-1)^s \cdot 2^{e-3} \cdot (1.f)_2 \\
+e = 0, f \neq 0 & \longrightarrow (-1)^s \cdot 2^{-2} \cdot (0.f)_2 \\
+e = 0, f = 0 & \longrightarrow 0 \\
+e = 7 & \longrightarrow v \text{ pertence à região de \emph{overflow}}
+\end{cases}
+\end{align*}
 
 \end{alphenum}
 
@@ -284,6 +294,8 @@ $\boldsymbol{\{x \in \mathbb{R} \mid x < -(15)_{10} \cup x > (15)_{10}\}}$.
 \item A precisão decimal equivalente é igual a $2^{1 - t} = 2^{1 - 4} = 2^{-3}
 = \boldsymbol{1.25 \cdot 10^{-1}}$.
 
+\item $(-1)^s \cdot 2^{-2} \cdot 0 = \boldsymbol{0}$
+
 \end{alphenum}
 
 \item O formato de ponto flutuante de precisão dupla tem 1 bit de sinal, 11 bits
@@ -321,7 +333,21 @@ Traceback (most recent call last):
 OverflowError: int too large to convert to float
 \end{verbatim}
 
-\item $log_{10} (2^{52}) = 52 \cdot log_{10} (2) \approx \boldsymbol{15.6535}$
+\item
+
+\begin{alphenum}
+
+\item $2^0 + 2^{-52} \longrightarrow$ precisão de até \textbf{17} dígitos
+decimais.
+
+\item $2^{-52} = 10^{1-d} \longrightarrow 1 - d = -52 \cdot log(2)
+\longrightarrow d = 1 + 52 \cdot log(2) \approx \boldsymbol{16.65356}$.
+
+\item Imprimindo \verb!double x = 0.1! com 30 casas após à vírgula, observa-se
+que existem 17 decimais exatos, portanto a precisão decimal equivalente está
+entre \textbf{16 e 17 dígitos}.
+
+\end{alphenum}
 
 \item \begin{discusscode}{div_by_zero.py}
 
@@ -508,7 +534,7 @@ $\big\vert\frac{VA - VE}{VE}\big\vert \cdot 100
 
 \item $(-1.1 \cdot 10^{-41})_{10} = (-1)^1 \cdot 2^{-126} \cdot (0.f)_2$ com
 $e \leq 0$, pois $log_2 (1.1 \cdot 10^{-41}) \approx -136$, o que implica em
-$e = -136 + 127 = -9 < 0 \longrightarrow$ número subnormal)
+$e = -136 + 127 = -9 < 0 \longrightarrow$ número subnormal
 
 Então, para descobrir a mantissa $f$, calcula-se
 $\frac{1.1 \cdot 10^{-41}}{2^{-126}}$ e multiplica-se o decimal para encontrar

@@ -138,8 +138,18 @@ com polarização que utilize os limites dos 3 bits totais reservados ao expoent
 
 \end{smallitem}
 
-\item Na representação $F(2,3,0,7)$ com $d_1 \neq 0$ antes da vírgula e
-polarização $p = +3$ calcule:
+\item Na representação $F(2, 3, 0, 7)$ padrão \textbf{IEEE 754 (1985)} com $d_1
+\neq 0 = 1$ antes da vírgula e representado implicitamente antes da vírgula e
+mais 3 bits significativos após a vírgula e  polarização $p = +3$, conforme
+segue, calcule:
+\begin{align*}
+\begin{cases}
+0 < e < 7 & \longrightarrow v = (-1)^s \cdot 2^{e-3} \cdot (1.f)_2 \\
+e = 0, f \neq 0 & \longrightarrow (-1)^s \cdot 2^{-2} \cdot (0.f)_2 \\
+e = 0, f = 0 & \longrightarrow 0 \\
+e = 7 & \longrightarrow v \text{ pertence à região de \textit{overflow}}
+\end{cases}
+\end{align*}
 
 \begin{smallitem}
 
@@ -153,15 +163,16 @@ polarização $p = +3$ calcule:
 
 \item Estime a precisão decimal equivalente;
 
+\item Represente o zero.
+
 \end{smallitem}
 
 \item Avalie as regiões de \textit{underflow} e \textit{overflow} para a
 variável de 64 bits, e teste os seus limites em algum compilador numérico (C,
-Java, \dots) ou em um software matemático livre (se usar Octave, pode usar os
-comandos \verb!single()! e \verb!double()!, para simular variáveis).
+Java, \dots) ou em um software matemático livre (como Octave).
 
 \item Avalie a precisão decimal equivalente da variável de 64 bits, através das
-três formas apresentadas.
+três formas apresentadas no Apêndice A3.
 
 \item Simule o algoritmo abaixo:
 \begin{verbatim}
