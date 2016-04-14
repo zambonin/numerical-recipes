@@ -95,8 +95,8 @@ def tridiag_matrix_alg(A, d):
     n = len(a)
     for k in range(1, n):
         m = a[k] / b[k-1]
-        b[k] -= m*c[k-1]
-        d[k] -= m*d[k-1]
+        b[k] -= m * c[k-1]
+        d[k] -= m * d[k-1]
 
     x = [0] * (n-1) + [d[-1] / b[-1]]
     for k in range(n-1, -1, -1):
