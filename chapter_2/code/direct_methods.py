@@ -15,10 +15,10 @@ def naive_gaussian_elim(A, b):
     for i in range(n-1):
         for j in range(i+1, n):
             mult = ext[j][i] / ext[i][i]
-            ext[j][i] = mult
             for k in range(i+1, n):
                 ext[j][k] -= mult * ext[i][k]
             ext[j][n] -= mult * ext[i][n]
+            ext[j][i] = 0
 
     assert ext[n-1][n-1] != 0, "No unique solution exists."
 
@@ -48,10 +48,10 @@ def part_pivot_gaussian_elim(A, b):
         ext = partial_pivoting(ext, i, n)
         for j in range(i+1, n):
             mult = ext[j][i] / ext[i][i]
-            ext[j][i] = mult
             for k in range(i+1, n):
                 ext[j][k] -= mult * ext[i][k]
             ext[j][n] -= mult * ext[i][n]
+            ext[j][i] = 0
 
     assert ext[n-1][n-1] != 0, "No unique solution exists."
 
