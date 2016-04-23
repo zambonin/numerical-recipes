@@ -7,8 +7,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem, mathtools}
 
-\pagestyle{empty}
-
 \newenvironment{arabenum}{
     \begin{enumerate}[label=\textbf{\arabic*})]
 }{
@@ -16,21 +14,22 @@
 }
 
 \newenvironment{alphenum}{
-    \begin{enumerate}[label=(\alph*)]
+    \begin{enumerate}[label=(\textit{\alph*})]
 }{
     \end{enumerate}
 }
 
+\title{\textbf{Métodos diretos e iterativos
+para sistemas esparsos de equações lineares}}
+\author{Gustavo Zambonin\thanks{\texttt{gustavo.zambonin@grad.ufsc.br} ---
+todos os algoritmos utilizados podem ser encontrados
+também \href{https://github.com/zambonin/ufsc-ine5409}{neste repositório}.} \\
+\small {Cálculo Numérico para Computação (UFSC -- INE5409)} \vspace{-5mm}}
+\date{}
+
 \begin{document}
 
-{\bf \noindent INE5409 - Cálculo Numérico para Computação (2016/1) \\
-Gustavo Zambonin \\
-Trabalho 1 - Métodos diretos e iterativos
-para sistemas esparsos de equações lineares \\
-}
-
-\noindent \textbf{Nota}: todos os algoritmos utilizados podem ser encontrados
-também \href{https://github.com/zambonin/ufsc-ine5409}{neste repositório}.
+\maketitle
 
 \begin{arabenum}
 
@@ -84,6 +83,10 @@ c \cdot n + \sum_{i=1}^n \sum_{j=i+1}^n c
 + \sum_{i=1}^n \sum_{j=i+1}^n \sum_{k=i+1}^n c
 = c \cdot n \cdot \Big( \frac{1}{6}(2n^2 - 3n + 1) + \frac{1}{2}(n-1) + 1 \Big)
 \end{equation*}
+
+Note que é possível remover a primeira iteração da retrosubstituição e calcular
+a solução manualmente, já que o somatório de coeficientes à direita será igual
+a $0$. Isto elimina uma subtração desnecessária.
 
 \item Para multiplicações, tem-se
 \begin{equation*}
