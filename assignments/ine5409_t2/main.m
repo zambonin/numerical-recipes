@@ -16,12 +16,12 @@ poly = transpose([
 printf("\n    b)  Os valores para o limite mínimo dos restos testados foram\n")
 printf("        os seguintes:\n")
 printf("        r_limite\titerações\tnúmero de raízes\tmultiplicidade\n")
-printf("          1e-1  \t   68    \t       2        \t  4, 4       \n")
-printf("          1e-2  \t   72    \t       2        \t  4, 3       \n")
-printf("          1e-3  \t   138   \t       3        \t  3, 2, 1    \n")
-printf("          1e-4  \t   207   \t       4        \t  3, 1, 1, 1 \n")
-printf("          1e-5  \t   218   \t       4        \t  3, 1, 1, 1 \n")
-printf("          1e-6  \t   244   \t       4        \t  3, 1, 1, 1 \n")
+printf("          1e-1  \t   42    \t       2        \t  4, 4       \n")
+printf("          1e-2  \t   45    \t       2        \t  4, 3       \n")
+printf("          1e-3  \t   61    \t       3        \t  3, 2, 1    \n")
+printf("          1e-4  \t   66    \t       4        \t  3, 1, 1, 1 \n")
+printf("          1e-5  \t   70    \t       4        \t  3, 1, 1, 1 \n")
+printf("          1e-6  \t   78    \t       4        \t  3, 1, 1, 1 \n")
 
 printf("\n    f)  Número total de iterações efetuadas: "), it
 

@@ -8,5 +8,5 @@ function r = remainders(n, a, xI)
         n -= 1;
         a = b;
     end
-    r = flip(b);
+    r = fliplr(b);
 end

@@ -18,14 +18,16 @@ function [x M iters] = orig_roots(a)
 
         [x(i_raiz) M(i_raiz) k difDif] = newton_raphson(n, a, xI, tol, min_val,
                                                         n_it);
-        printf("    c)  Newton-Raphson na primeira chamada: "), it_1 += k
+        printf("    c)  Iterações acumuladas na primeira chamada do Newton-Raphson: ")
+        it_1 += k
 
         [x(i_raiz) M(i_raiz) k difDif] = newton_raphson(nI, aI, x(i_raiz), tol,
                                                         min_val, n_it);
-        printf("    d)  Newton-Raphson na segunda chamada: "), it_2 += k
+        printf("    d)  Iterações acumuladas na segunda chamada do Newton-Raphson: ")
+        it_2 += k
 
         printf("    e)  Critério de parada atingido: "), difDif
         [n, a] = poly_div(n, a, x(i_raiz), M(i_raiz));
-        iters += (it_1 + it_2);
     end
+    iters = (it_1 + it_2);
 end
