@@ -15,12 +15,12 @@ function x = gauss_elimination(n, A)
         if (abs(A(n, n+1)) < 1e-14)
             printf("Sistema indeterminado\n")
             x(n) = 0;
-        else    
+        else
             printf("Sistema impossível\n")
             x(n) = NaN;
         end
     else
-        x(n) = A(n, n+1) / A(n, n);    
+        x(n) = A(n, n+1) / A(n, n);
     end
 
     for i = n-1 : -1 : 1

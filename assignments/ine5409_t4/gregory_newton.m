@@ -1,5 +1,5 @@
 function yPn = gregory_newton(p, n, x, y)
-    
+
     k = 1;
     for i = 1 : n
         DDy(i, k) = (y(i+1) - y(i)) / (x(i+1) - x(i));
