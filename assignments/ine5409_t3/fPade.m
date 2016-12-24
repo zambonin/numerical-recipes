@@ -12,7 +12,7 @@ function [a b] = fPade(npade, mpade, c)
 
     aux = elimGauss(mpade, A);
     b = fliplr(transpose(aux));
-    b(mpade+1 : npade) = 0; 
+    b(mpade+1 : npade) = 0;
     b = [1 b];
     a(1) = c(1);
 

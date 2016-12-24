@@ -1,7 +1,7 @@
 function A = questao3()
 
-    np = 100; 
-    h = 1 / np; 
+    np = 100;
+    h = 1 / np;
 
     % pontos de ancoragem
     pA = [0, 0];

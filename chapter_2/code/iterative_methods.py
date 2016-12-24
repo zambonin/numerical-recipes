@@ -20,14 +20,14 @@ def jacobi_method(A, b, n_it, tol=float_info.epsilon):
     ext = [j + [b[i]] for i, j in enumerate(A)]
     n = len(ext)
 
-    x = [0]*n
+    x = [0] * n
     for k in range(n_it):
         prev = deepcopy(x)
         for i in range(n):
             summation = sum(ext[i][j] * prev[j] for j in range(n) if j != i)
             x[i] = (ext[i][n] - summation) / ext[i][i]
         if max(abs((i - j) / j) for i, j in zip(prev, x)) < tol:
-            print("Maximum tolerance exceeded at iteration {}.".format(k+1))
+            print("Maximum tolerance exceeded at iteration {}.".format(k + 1))
             break
 
     return x
@@ -54,15 +54,15 @@ def SOR(A, b, n_it, relax=1, tol=float_info.epsilon):
     ext = [j + [b[i]] for i, j in enumerate(A)]
     n = len(ext)
 
-    x = [0]*n
+    x = [0] * n
     for k in range(n_it):
         prev = deepcopy(x)
         for i in range(n):
             sum1 = sum(ext[i][j] * x[j] for j in range(i))
-            sum2 = sum(ext[i][j] * prev[j] for j in range(i+1, n))
+            sum2 = sum(ext[i][j] * prev[j] for j in range(i + 1, n))
             x[i] += relax * (((ext[i][n] - sum1 - sum2) / ext[i][i]) - x[i])
         if max(abs((i - j) / j) for i, j in zip(prev, x)) < tol:
-            print("Maximum tolerance exceeded at iteration {}.".format(k+1))
+            print("Maximum tolerance exceeded at iteration {}.".format(k + 1))
             break
 
     return x

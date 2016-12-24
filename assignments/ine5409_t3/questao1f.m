@@ -9,7 +9,7 @@ function x = questao1f()
     approxPade = (x .* (5121/5120)) - ((x .^ 3) .* (959/5760)) + ((x .^ 5) .* (23/2880));
     erroPade = abs(approxPade .- exato);
 
-	plot(exato, erroCheb, "b; Chebyshev;", 
-		 exato, erroPade, "g; Pade;") 
+	plot(exato, erroCheb, "b; Chebyshev;",
+		 exato, erroPade, "g; Pade;")
 
 end

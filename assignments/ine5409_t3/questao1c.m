@@ -9,7 +9,7 @@ function [C erro] = questao1c()
     %     R_n(x) <= sqrt(10) * 10^-2
 
     % Aplicando n = 5 por tentativas, tem-se
-        
+
     %     R_n(x)  = (max(abs(sen(x))*(1 - 0)^6)) / 6!
     %             = sen(1) / 6!
     %             = 0.0011687097...
@@ -34,7 +34,7 @@ function [C erro] = questao1c()
     %          = T_1 - (T_3/24) - (T_1/8) + (T_5/1920) + (T_3/384) + (T_1/192)
     %          = T_1 (1 - 1/8 + 1/192) + T_3 (1/384 - 1/24) + T_5 (1/1920)
     %          = T_1 (169/192) + T_3 (-5/128) + T_5 (1/1920)
-        
+
     % Como 1/1920 < O(10^-3), então T_5 pode ser truncado.
 
     %     C_T = T_1 (169/192) + T_3 (-5/128)

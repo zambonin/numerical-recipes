@@ -6,15 +6,15 @@
 
 def quad_eq(a, b, c):
     """Quadratic formula simple implementation."""
-    d = round((b**2 - 4*a*c)**(1.0/2), 2)
-    return (- b / (2*a)) if d == 0 else ((- b + d) / (2*a), (- b - d) / (2*a))
+    d = round((b**2 - 4 * a * c)**(1.0 / 2), 2)
+    return -b / (2 * a) if d == 0 else ((-b + d) / (2 * a), (-b - d) / (2 * a))
 
 
 def rat_quad_eq(a, b, c):
     """Rationalized quadratic formula. It should provide
     further accuracy with certain coefficients."""
-    d = round((b**2 - 4*a*c)**(1.0/2), 2)
-    return (- b / (2*a)) if d == 0 else ((- 2*c) / (b + d), (- 2*c) / (b - d))
+    d = round((b**2 - 4 * a * c)**(1.0 / 2), 2)
+    return -b / (2 * a) if d == 0 else ((-2 * c) / (b + d), (-2 * c) / (b - d))
 
 
 def relative_error(desired, obtained):

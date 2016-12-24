@@ -8,10 +8,10 @@ function yPn = fLagrange(n, x, y, xE)
                 if (j != i)
                     numerador *= (xE(k) - x(j));
                     denominador *= (x(i) - x(j));
-                end                        
+                end
             end
             produto = numerador / denominador;
-            yPn(k) += y(i) * produto;    
-        end 
+            yPn(k) += y(i) * produto;
+        end
     end
 end

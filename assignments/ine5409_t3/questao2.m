@@ -3,12 +3,12 @@ function A = questao2()
     x = [0, 1, 2, 3];
     y = [-3, -2, 4, 0];
     n = length(x)-1;
-    
+
     printf("\n2a)\n");
-    
+
     for i = 1 : n
         h(i) = x(i+1) - x(i);
-    end 
+    end
 
     [a, b, c, d, S] = fSplinea(n, x, y, h);
     a = a(2)
@@ -41,7 +41,7 @@ function A = questao2()
     l = xp - x(2);
     yp = a(2)*(l^3) + b(2)*(l^2) + c(2)*(l) + d(2);
     yp
-    
+
     % 2e)
     np = 10;
     xpp = [];
@@ -51,7 +51,7 @@ function A = questao2()
             for k = 1 : np+1
                 l = xp(k) - x(i);
                yp(k) = a(i)*(l^3) + b(i)*(l^2) + c(i)*(l) + d(i);
-            end 
+            end
             xpp=[xpp xp];
             ypp=[ypp yp];
     end

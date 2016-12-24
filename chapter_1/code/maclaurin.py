@@ -7,5 +7,5 @@ x = -.111
 desired = 0.894938748929031
 
 for y in [single(x), x]:
-    obtained = reduce(lambda w, i: w + (y**i)/fact(i), range(n), 0)
+    obtained = reduce(lambda w, i: w + (y**i) / fact(i), range(n), 0)
     print("{:.65f}%".format(abs((desired - obtained) / desired) * 100))

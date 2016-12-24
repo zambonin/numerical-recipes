@@ -11,11 +11,11 @@ def cauchy_bound(p, tol):
 
     def radius_cauchy(p, tol):
         n = len(p)
-        r = abs(p[-1] / p[0]) ** (1/n)
+        r = abs(p[-1] / p[0]) ** (1 / n)
         while True:
             old = r
             r = sum(abs(p[i] / p[0]) * (old ** (n - i))
-                    for i in range(1, n)) ** (1/n)
+                    for i in range(1, n)) ** (1 / n)
             if (abs(r - old) < tol):
                 return r
 
@@ -25,7 +25,7 @@ def cauchy_bound(p, tol):
 def kojima_bound(p):
 
     def radius_kojima(p):
-        q = [abs(p[i] / p[0]) ** (1/i) for i in range(1, len(p))]
+        q = [abs(p[i] / p[0]) ** (1 / i) for i in range(1, len(p))]
         return sum(sorted(q)[-2:])
 
     return (radius_kojima(p), 1 / radius_kojima(p[::-1]))
@@ -37,6 +37,6 @@ def root_bounds(p, tol):
 
     max_radius = min(i[0] for i in bounds)
     min_radius = max(i[1] for i in bounds)
-    real = ((max_radius + min_radius) / 2) / (2 ** (1/2))
+    real = ((max_radius + min_radius) / 2) / (2 ** (1 / 2))
 
     return complex(real, -real)

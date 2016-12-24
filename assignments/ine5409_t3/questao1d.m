@@ -9,18 +9,18 @@ function [C erro] = questao1d()
     % e as potências de x escritas em função de polinômios de Chebyshev (e vice-versa)
 
     %   x = T_1
-    %   x^3 = (T_3 + 3T_1) / 4 
+    %   x^3 = (T_3 + 3T_1) / 4
     %   x^5 = (T_5 + 5T_3 + 10T_1) / 16
     %   x^7 = (T_7 + 7T_5 + 21T_3 + 35T_1) / 64
 
     %   T_1 = x
-    %   T_3 = 4x^3 - 3x 
+    %   T_3 = 4x^3 - 3x
     %   T_5 = 16x^5 - 20x^3 + 5x
     %   T_7 = 64x^7 - 112x^5 + 56x^3 - 7x
 
     % Substituindo estas potências, tem-se
 
-    %   C_T  = T_1 - (((T_3 + 3T_1) / 4) / 3!) + (((T_5 + 5T_3 + 10T_1) / 16) / 5!) 
+    %   C_T  = T_1 - (((T_3 + 3T_1) / 4) / 3!) + (((T_5 + 5T_3 + 10T_1) / 16) / 5!)
     %           + (((T_7 + 7T_5 + 21T_3 + 35T_1) / 64) / 7!)
     %        = T_1 - ((T_3 + 3T_1) / 24) + ((T_5 + 5T_3 + 10T_1) / 1920)
     %           - ((T_7 + 7T_5 + 21T_3 + 35T_1) / 322560)

@@ -1,5 +1,5 @@
 function x = elimGauss(n,A)
-  
+
   for k = 1:n-1
     A = pivotParcial(n, k, A);
     for i = k+1:n
@@ -15,12 +15,12 @@ function x = elimGauss(n,A)
     if(abs(A(n,n+1)) < eps)
         printf("Sistema indeterminado\n")
         x(n) = 0;
-    else    
+    else
         printf("Sistema impossível\n")
         x(n) = NaN;
     end
   else
-    x(n) = A(n, n+1)/A(n,n);    
+    x(n) = A(n, n+1)/A(n,n);
   end
 
   for i = n-1:-1:1
