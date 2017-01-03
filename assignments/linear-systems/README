@@ -1,0 +1,16 @@
+The assignment consists of solving a system of `n` linear equations,
+where n = 100, of the form
+
+    x_{i} + x_{i+1} = 1.5,                          i = 1
+    x_{i-1} + 3x_{i} + x_{i+1} + x_{i + n/2} = 1,   i = 2, ..., n/2
+    x_{i - n/2} + x_{i-1} + 3x_{i} + x_{i+1} = 2,   i = n/2, ..., n-1
+    x_{i-1} + x_{i} = 3,                            i = n
+
+with naive Gaussian elimination and successive over-relaxation methods.
+A full report was produced, and can be read by opening `ine5409_t1.pdf`.
+
+The main program can be run with Python 3:
+
+    $ python ine5409_t1.py
+
+Original assignment: b3053aeb5e7195e7d400d76b50a1966628051962

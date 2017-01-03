@@ -1,0 +1,6 @@
+Assignment about curve fitting and numerical integration. It can be executed
+with
+
+    $ octave main.m
+
+Original assignment: d383891ce4c6d8ca00569137a645d4b5466d03d8

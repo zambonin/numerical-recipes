@@ -1,0 +1,11 @@
+The assignment consists of finding root approximations for a polynomial of
+the form
+
+    P(x)= (1 + 0i)x^6 - (5 + 1i)x^5 + (9.99 + 5i)x^4 - (9.97 + 9.99i)x^3
+            + (4.97 + 9.97i)x^2 - (0.99 + 4.97i)x + (0 + 0.99i) = 0
+
+with Newton's method. It can be executed with
+
+    $ octave main.m
+
+Original assignment: 9c671684d5bb50e3e7f5ed6090dc9e71e3e85218

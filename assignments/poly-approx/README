@@ -1,0 +1,6 @@
+Assignment about polynomial and spline interpolation, Bézier curves and
+polynomial approximation through series. It can be executed with
+
+    $ octave main.m
+
+Original assignment: ce8617ec6457287f2fd375bfa01a397aa56428e1
