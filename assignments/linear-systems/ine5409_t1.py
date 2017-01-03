@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 
-#####
-# Relatório:
-# https://github.com/zambonin/UFSC-INE5409/blob/master/assignments/ine5409_t1/ine5409_t1.pdf
-#####
-
 from direct_methods import naive_gaussian_elim
 from iterative_methods import SOR, check_diagonal_dominance
 
 
 def create_matrix():
-
     n = 100
     A = [[0]*100 for i in range(n)]
     b = [0]*n
@@ -31,6 +25,7 @@ def create_matrix():
 
 
 if __name__ == "__main__":
+
     A, b = create_matrix()
 
     # questão 1
@@ -39,11 +34,6 @@ if __name__ == "__main__":
 
     # questão 2
     print("Dominância diagonal: {}\n".format(check_diagonal_dominance(A)))
-
-    # r = [i/1000 for i in range(1800, 1900)]
-    # for i in r:
-    #     x = SOR(A, b, 1000, i)
-    #     print("{:.3f}".format(i), x[0] + x[1])
 
     z = SOR(A, b, 500, 1.879, 1e-4)
     print("Solução por SOR: {}\n".format(z))

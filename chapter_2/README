@@ -1,0 +1,9 @@
+The second chapter of this class deals with systems of linear equations.
+Most exercises can be solved with the direct and iterative methods coded
+in Python, inside the specific folder.
+
+The available algorithms are:
+ * Gaussian elimination w/ backward substitution and optional partial pivoting
+ * tridiagonal matrix algorithm (Thomas algorithm)
+ * Jacobi method
+ * successive over-relaxation (or Gauss-Seidel, if ω = 1)
