@@ -185,7 +185,7 @@ i = n
 \item Se o sistema for resolvido por métodos iterativos, como Jacobi ou
 Gauss--Seidel, a sua convergência para a solução é garantida? Justifique;
 
-\item É recomendo testar a utilização de fatores de sub-relaxação? Justifique;
+\item É recomendo testar a utilização de fatores de subrelaxação? Justifique;
 
 \item Monte um algoritmo otimizado, que calcule e imprima a solução $x$ do sistema
 linear acima com 10 dígitos significativos exatos, para $n = 10000$ incógnitas, pelo
@@ -239,7 +239,7 @@ para $n_1 = 3$ e $n_2 = 4$, pelo método de Gauss (sem pivotação);
 
 \item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$, com erro
 máximo estimado por $max(\vert x(i)- x_i(i) \vert)$ de sua escolha, pelo método
-de Gauss--Seidel (sem fator de sub-relaxação).
+de Gauss--Seidel (sem fator de subrelaxação).
 
 \end{smallitem}
 
@@ -272,7 +272,7 @@ A$, referente ao sistema acima para $n_1 = 3$ e $n_2 = 4$, pelo método de Crout
 
 \item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$, com erro
 máximo estimado por $max(\vert x(i)- x_i(i) \vert) < 2 \cdot 10^{-2}$, pelo
-método de Gauss--Seidel (sem fator de sub-relaxação), a partir da solução
+método de Gauss--Seidel (sem fator de subrelaxação), a partir da solução
 inicial NULA.
 
 \end{smallitem}
@@ -341,17 +341,17 @@ resposta.
 \item Monte um algoritmo que determine a solução do sistema acima, para $n_1 =
 3000$ e $n_2 = 4000$ equações, com erro máximo estimado por $max(\vert x(i) -
 x_a(i) \vert) < 1 \cdot 10^{-6}$, pelo método de Gauss--Seidel com fator de
-sub-relaxação 0.5, a partir da solução inicial UNITÁRIA.
+subrelaxação 0.5, a partir da solução inicial UNITÁRIA.
 
 \item Monte um algoritmo que determine o erro de truncamento exato da solução
 $x$ do sistema acima, para $n_1 = 3000$ e $n_2 = 4000$ equações, com critério de
 parada $max(\vert x(i) - x_a(i) \vert) < 1 \cdot 10^{-6}$, pelo método de
-Gauss--Seidel com fator de sub-relaxação 0.5, a partir da solução inicial
+Gauss--Seidel com fator de subrelaxação 0.5, a partir da solução inicial
 UNITÁRIA.
 
 \item Determine a solução do sistema acima, para $n_1 = 3$ e $n_2 = 4$ equações,
 com erro máximo estimado por $max(\vert x(i) - x_a(i) \vert)$ de sua escolha,
-pelo método de Gauss--Seidel (sem fator de sub-relaxação), a partir da solução
+pelo método de Gauss--Seidel (sem fator de subrelaxação), a partir da solução
 inicial UNITÁRIA.
 
 \end{smallitem}
@@ -370,7 +370,7 @@ pelo método de Gauss de uma matriz expandida $\begin{bmatrix} A & b
 
 \item Forneça a solução $S = \{x_i\}$ de um sistema escrito em forma de matriz
 expandida já triangularizada $\begin{bmatrix} A & b \end{bmatrix}$, pelo método
-da Retrosubstituição de Gauss;
+da Retro-substituição de Gauss;
 
 \item Forneça a matriz $\begin{bmatrix} A & b \end{bmatrix}$, decomposta em $L$
 e $U$, pelo método de Crout a partir de uma matriz expandida $\begin{bmatrix} A
@@ -421,7 +421,7 @@ garantida?
 
 \item Elabore um algoritmo otimizado para obter sua solução com $max(\vert
 x_i^{k + 1} - x_i^k \vert) \leq \epsilon \; (\epsilon = 1 \cdot 10^{-5})$ pelo
-método de Gauss--Seidel com sub-relaxação de $\lambda = 0.8$, a partir da
+método de Gauss--Seidel com subrelaxação de $\lambda = 0.8$, a partir da
 solução inicial $(0, 0, 0, \dots, 0)$.
 
 \end{smallitem}
@@ -456,7 +456,7 @@ $max(\vert x_i^{k + 1} - x_i^k \vert) \leq \epsilon \; (\epsilon = 1 \cdot
 \item O que é pivotação parcial e para que serve?
 
 \item A pivotação parcial ajuda a minimizar o acúmulo de erros de
-arredonamento ao longo do processo de escalonamento? Justifique.
+arredondamento ao longo do processo de escalonamento? Justifique.
 
 \item Quais são os requisitos para que um sistema de equações convirja
 garantidamente?
@@ -517,13 +517,13 @@ iterativos, a sua convergência será garantida? Justifique sua resposta.
 
 \item Considerando $n = 4$ equações, determine a solução do sistema, com erro
 máximo estimado por $max(\vert x_i - x_i^a \vert) \leq \epsilon$, pelo método
-de Gauss--Seidel, com fator de sub-relaxação $\lambda = 0.8$ a partir da
+de Gauss--Seidel, com fator de subrelaxação $\lambda = 0.8$ a partir da
 solução inicial unitária ($\epsilon$ de sua escolha). Defina o erro
 encontrado.
 
 \item Monte um algoritmo que determine a solução do sistema acima, para $n =
 1000$ equações, com critério de parada $max(\vert x_i - x_i^a \vert) \leq
-0.000001$, pelo método de Gauss--Seidel, com fator de sub-relaxação $\lambda =
+0.000001$, pelo método de Gauss--Seidel, com fator de subrelaxação $\lambda =
 0.8$ a partir da solução inicial unitária. Calcule os erros exatos de cada
 $x(i)$ da solução.
 
@@ -543,7 +543,7 @@ x_1 + x_2 + 1.5x_3 = 4 \\
 \item Verifique se o sistema acima é mal-condicionado. Justifique;
 
 \item Determine uma solução do sistema acima pelo método de GAUSS
-(triangularização e retrosubstituição), com pivotação parcial;
+(triangularização e retro-substituição), com pivotação parcial;
 
 \item Avalie os resíduos finais das equações e verifique se a solução obtida
 tem uma exatidão satisfatória (de acordo com o número de dígitos adotado).
@@ -592,7 +592,7 @@ matriz banda tridiagonal? Justifique;
 
 \item Monte um algoritmo otimizado, que calcule e imprima uma solução
 satisfatória (escolha um erro adequado) para as $n = 1000$ incógnitas, pelo
-método que você presuma efetuar o menor número de operações artiméticas em
+método que você presuma efetuar o menor número de operações aritméticas em
 ponto flutuante. Justifique a escolha do método adotado. Escolha.
 
 \end{smallitem}
