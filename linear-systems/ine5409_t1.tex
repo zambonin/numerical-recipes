@@ -1,39 +1,21 @@
-\documentclass{article}
+\documentclass{sftex/sftex}
 
-\usepackage[brazil]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[a4paper, margin=1.5cm]{geometry}
-\usepackage[colorlinks, urlcolor=blue]{hyperref}
-\usepackage[utf8]{inputenc}
 \usepackage{enumitem, mathtools}
 
-\newenvironment{arabenum}{
-    \begin{enumerate}[label=\textbf{\arabic*})]
-}{
-    \end{enumerate}
-}
-
-\newenvironment{alphenum}{
-    \begin{enumerate}[label=(\textit{\alph*})]
-}{
-    \end{enumerate}
-}
-
-\title{\textbf{Métodos diretos e iterativos
-para sistemas esparsos de equações lineares}}
-\author{Gustavo Zambonin\thanks{\texttt{gustavo.zambonin@grad.ufsc.br} ---
-todos os algoritmos utilizados podem ser encontrados
-também \href{https://github.com/zambonin/ufsc-ine5409}{neste repositório}.} \\
-\small {Cálculo Numérico para Computação (UFSC -- INE5409)} \vspace{-5mm}}
-\date{}
+\title{Métodos diretos e iterativos para sistemas esparsos de equações lineares}
+\author{Gustavo Zambonin}
+\email{gustavo.zambonin@grad.ufsc.br}
+\src{https://github.com/zambonin/ufsc-ine5409}
+\uniclass{Cálculo Numérico para Computação}
+\classcode{UFSC-INE5409}
 
 \begin{document}
 
 \maketitle
 
-\begin{arabenum}
+\begin{enumerate}
 
-\item \begin{alphenum}
+\item \begin{enumerate}
 
 \item A solução para o sistema de equações lineares fornecido, a partir de um
 método direto, é apresentada abaixo. O método escolhido, em virtude das
@@ -108,9 +90,9 @@ Então, o número final de operações é de
 c \cdot n \cdot \Big( \frac{5}{2}(n-1) + \frac{1}{3}(2n^2 - 3n + 1) + 2 \Big).
 \end{equation*}
 
-\end{alphenum}
+\end{enumerate}
 
-\item \begin{alphenum}
+\item \begin{enumerate}
 
 \item A análise de convergência de um sistema deste tipo é realizada pela
 verificação da dominância diagonal da matriz, ou seja, uma matriz $A$ é
@@ -206,8 +188,8 @@ c \cdot s \cdot (7n - 4).
 e $VE$ é o resultado da eliminação Gaussiana) entre as soluções obtidas acima:
 $0.0138600924952 \approx \boldsymbol{1.386 \cdot 10^{-2}}$.
 
-\end{alphenum}
+\end{enumerate}
 
-\end{arabenum}
+\end{enumerate}
 
 \end{document}
