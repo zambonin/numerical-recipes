@@ -8,6 +8,9 @@ operations (in exact arithmetic) and solving the linear system `Ax = b` is
 called a direct method.
 """
 
+from __future__ import division
+
+
 def naive_gaussian_elim(coef, terms):
     """
     Gaussian elimination with backward substitution and no pivoting.
@@ -42,17 +45,21 @@ def naive_gaussian_elim(coef, terms):
     sol = [0] * size
     for i in range(size - 1, -1, -1):
         subs_sum = sum(ext[i][j] * sol[j] for j in range(i + 1, size))
-        sums += len(range(i + 1, size))
-        muls += len(range(i + 1, size))
+        sums += size - i - 1
+        muls += size - i - 1
         sol[i] = (ext[i][size] - subs_sum) / ext[i][i]
         subs += 1
         divs += 1
 
-    print("Contadores separados:\n"
-          "Somas: {}    Subtrações: {}\n"
-          "Multiplicações: {}    Divisões: {}"
-          .format(sums, subs, muls, divs))
-    print("Número de operações em ponto flutuante: {}\n".format(
-        sums + subs + muls + divs))
+    print(
+        "Contadores separados:\n"
+        "Somas: {}    Subtrações: {}\n"
+        "Multiplicações: {}    Divisões: {}".format(sums, subs, muls, divs)
+    )
+    print(
+        "Número de operações em ponto flutuante: {}\n".format(
+            sums + subs + muls + divs
+        )
+    )
 
     return sol

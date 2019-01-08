@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# pylint: disable=C0330
 
 """iterative_methods.py
 
@@ -8,12 +9,14 @@ approximate solutions for a class of problems (in this case, solving linear
 systems), in which the `n`-th approximation is derived from the previous ones.
 """
 
+from __future__ import absolute_import, division
 from copy import deepcopy
 from sys import float_info
 
 
-def successive_over_relaxation(coef, terms, n_it, relax=1,
-                               tol=float_info.epsilon):
+def successive_over_relaxation(
+    coef, terms, n_it, relax=1, tol=float_info.epsilon
+):
     """
     Successive over-relaxation is a variant of Gauss-Seidel, where a chosen
     relaxation factor may result in faster or slower convergence.
@@ -40,37 +43,46 @@ def successive_over_relaxation(coef, terms, n_it, relax=1,
         prev = deepcopy(sol)
 
         i = 0
-        sol[i] = prev[i] \
-                + relax * (((terms[i] - sol[i + 1]) / coef[i][i]) - prev[i])
+        sol[i] = prev[i] + relax * (
+            ((terms[i] - sol[i + 1]) / coef[i][i]) - prev[i]
+        )
 
         for i in range(1, size // 2):
             partial = sol[i - 1] + sol[i + 1] + sol[i + (size // 2)]
-            sol[i] = prev[i] \
-                    + relax * (((terms[i] - partial) / coef[i][i]) - prev[i])
+            sol[i] = prev[i] + relax * (
+                ((terms[i] - partial) / coef[i][i]) - prev[i]
+            )
 
         for i in range(size // 2, size - 1):
             partial = sol[i - (size // 2)] + sol[i - 1] + sol[i + 1]
-            sol[i] = prev[i] \
-                    + relax * (((terms[i] - partial) / coef[i][i]) - prev[i])
+            sol[i] = prev[i] + relax * (
+                ((terms[i] - partial) / coef[i][i]) - prev[i]
+            )
 
         i = size - 1
-        sol[i] = prev[i] \
-                + relax * (((terms[i] - sol[i - 1]) / coef[i][i]) - prev[i])
+        sol[i] = prev[i] + relax * (
+            ((terms[i] - sol[i - 1]) / coef[i][i]) - prev[i]
+        )
 
-        sums += 2 + 3 * len(range(size - 2))
-        muls += len(range(size))
-        subs += 2 * len(range(size))
-        divs += len(range(size))
+        sums += 2 + 3 * (size - 2)
+        muls += size
+        subs += 2 * size
+        divs += size
 
         if max(abs((i - j) / j) for i, j in zip(prev, sol)) < tol:
             print("Maximum tolerance exceeded at iteration {}.".format(k + 1))
             break
 
-    print("Contadores separados:\n"
-          "Somas: {}    Subtrações: {}\n"
-          "Multiplicações: {}    Divisões: {}".format(sums, subs, muls, divs))
-    print("Número de operações em ponto flutuante: {}\n".format(
-        sums + subs + muls + divs))
+    print(
+        "Contadores separados:\n"
+        "Somas: {}    Subtrações: {}\n"
+        "Multiplicações: {}    Divisões: {}".format(sums, subs, muls, divs)
+    )
+    print(
+        "Número de operações em ponto flutuante: {}\n".format(
+            sums + subs + muls + divs
+        )
+    )
 
     return sol
 
@@ -86,5 +98,7 @@ def check_diagonal_dominance(mat):
         also True. Hence, if any element fails to be dominant over
         its row, the matrix itself cannot be diagonally dominant.
     """
-    return all(abs(mat[i][i]) > sum(abs(k) for k in j) - abs(mat[i][i])
-               for i, j in enumerate(mat))
+    return all(
+        abs(mat[i][i]) > sum(abs(k) for k in j) - abs(mat[i][i])
+        for i, j in enumerate(mat)
+    )

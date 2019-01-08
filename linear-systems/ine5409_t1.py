@@ -7,9 +7,12 @@ Code for the first assignment, which solves sparse linear systems with
 direct and iterative numerical methods.
 """
 
+from __future__ import absolute_import, division
 from direct_methods import naive_gaussian_elim
-from iterative_methods import (successive_over_relaxation,
-                               check_diagonal_dominance)
+from iterative_methods import (
+    successive_over_relaxation,
+    check_diagonal_dominance,
+)
 
 
 def create_matrix():
